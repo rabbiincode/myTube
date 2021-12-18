@@ -6,14 +6,14 @@ import Sidebar from './component/sidebar/Sidebar'
 
 import './_app.scss'
 import LoginScreen from './component/screens/LoginScreen'
+import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
 
-const App = () => {
+const Layout = ({ children }) => {
 
-const [sidebar, toggleSidebar] = useState(false)
+  const [sidebar, toggleSidebar] = useState(false)
+  const handleToggleSidebar = () => toggleSidebar(value => !value)
 
-const handleToggleSidebar = () => toggleSidebar(value => !value)
-
-  return (
+  return(
     <>
      <Header handleToggleSidebar={handleToggleSidebar} />
      <div className="app_container">
@@ -22,12 +22,39 @@ const handleToggleSidebar = () => toggleSidebar(value => !value)
          handleToggleSidebar={handleToggleSidebar}
        />
        <Container className="app-main">
-         <HomeScreen/>
+         {children}    
        </Container>
      </div>
     </>
-    //<LoginScreen/>
   )
+}
+
+const App = () => {
+   return( 
+    <Router>
+      <Switch>
+      <Route path='/' exact>
+       <Layout>
+        <HomeScreen />
+       </Layout>
+     </Route>
+
+     <Route path='/auth'>
+       <LoginScreen />
+     </Route>
+
+     <Route path='/search'>
+       <Layout>
+        <h1>SEARCH</h1>
+       </Layout>
+     </Route>
+       <Redirect to='/' />
+     <Route >
+       
+     </Route>
+      </Switch>
+    </Router>
+ )
 }
 
 export default App
