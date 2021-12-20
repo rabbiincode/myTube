@@ -13,19 +13,19 @@ const Layout = ({ children }) => {
   const [sidebar, toggleSidebar] = useState(false)
   const handleToggleSidebar = () => toggleSidebar(value => !value)
 
-  return(
-    <>
-     <Header handleToggleSidebar={handleToggleSidebar} />
-     <div className="app_container">
-       <Sidebar
-         sidebar={sidebar}
-         handleToggleSidebar={handleToggleSidebar}
-       />
-       <Container className="app-main">
-         {children}    
-       </Container>
-     </div>
-    </>
+    return(
+      <>
+       <Header handleToggleSidebar={handleToggleSidebar} />
+       <div className="app_container">
+         <Sidebar
+           sidebar={sidebar}
+           handleToggleSidebar={handleToggleSidebar}
+         />
+         <Container className="app-main">
+           {children}    
+         </Container>
+       </div>
+      </>
   )
 }
 
@@ -50,7 +50,7 @@ const App = () => {
      </Route>
        <Redirect to='/' />
      <Route >
-       
+
      </Route>
       </Switch>
     </Router>
