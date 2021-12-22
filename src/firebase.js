@@ -3,12 +3,13 @@ import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 
 const firebaseConfig = {
- apiKey: "AIzaSyDzSJNb4GctkVOxyzqaq4baVcR3-_IsCr4",
- authDomain: "mytube-20.firebaseapp.com",
- projectId: "mytube-20",
- storageBucket: "mytube-20.appspot.com",
- messagingSenderId: "463870457672",
- appId: "1:463870457672:web:590bf28b3680d4e956e57d"
+ apiKey: "AIzaSyBncqKBJ6c_Y8vs5DlGOyJmkpMGOT6uQdk",
+ authDomain: "mytube-1000.firebaseapp.com",
+ projectId: "mytube-1000",
+ storageBucket: "mytube-1000.appspot.com",
+ messagingSenderId: "289717065240",
+ appId: "1:289717065240:web:e9c13048b0fe981b35d56d",
+ measurementId: "G-Y5X3603T2X"
 };
 
 //using firsbase initializer
