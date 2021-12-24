@@ -4,9 +4,22 @@
  padding: 0.5rem 0;
  font-size: 0.8rem;
 
+ 
+color: white;
+font-size: large;
+
+
  display: flex;
  overflow-x: scroll;
 
+ background-color: $black-primary;
+ position: sticky;
+ top: 10vh;
+ width: 100%;
+ padding-top: 1rem;
+ z-index: 999;
+
+ 
  &::-webkit-scrollbar{
   width: 0px;
  }
@@ -19,10 +32,12 @@
   white-space: nowrap;
   border: 1px solid $text-color;
   border-radius: 999px;
+  background: $black-category;
 
   &:hover{
-   background-color: #374a59;
+   background-color: #444848;
    cursor: pointer;
+   transition: all 0.1s ease-in;
   }
 
   &.active{

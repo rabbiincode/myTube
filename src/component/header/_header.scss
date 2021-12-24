@@ -7,10 +7,14 @@
 
  padding: 1rem 3rem;
 
- border-color: $black-primary;
+ background-color: $black-primary;
 
  height: 10vh;
  width: 100%;
+
+ position: fixed;
+ top: 0;
+ z-index: 999;
 
  &-menu{
   display: none;
