@@ -64,7 +64,6 @@ const Videos = ( {videos} ) => {
    </div>
    <div className='video-details'>
     <span>
-    {/* process video views using numerals */}
      <AiFillEye/> {numeral(views).format('0.a')}
     </span>
     <span>{moment(publishedAt).fromNow()}</span>
@@ -72,7 +71,7 @@ const Videos = ( {videos} ) => {
    <div className='video-channel'>
     <img 
       src = {channelIcon?.url}
-      alt='' />
+      alt='' /> 
     <p>{channelTitle}</p>
    </div>
   </div>
