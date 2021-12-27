@@ -62,7 +62,7 @@ const App = () => {
          </Layout>
        </Route>
        
-       <Route path='/watch'>
+       <Route path='/watch/:id'>
         <Layout>
           <WatchScreen/>
         </Layout>

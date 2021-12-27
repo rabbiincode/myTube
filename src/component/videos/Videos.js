@@ -8,6 +8,8 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import moment from 'moment'
 import numeral from 'numeral'
 
+import { useHistory } from 'react-router-dom'
+
 const Videos = ( {videos} ) => {
 
   const { id, snippet:{channelId, channelTitle, title, publishedAt, thumbnails: {medium}, } } = videos
@@ -22,6 +24,8 @@ const Videos = ( {videos} ) => {
 
   const _videoId = id?.videoId || id
 
+  const history = useHistory()
+
   //because of inconsistent data in the API call we pass into useEffect first
   useEffect(() => {
     const get_video_details = async () => {
@@ -31,7 +35,7 @@ const Videos = ( {videos} ) => {
           id: _videoId,
         }
       })
-      //console.log(items);
+      //console.log(items);        
       setDuration(items[0].contentDetails.duration)
       setViews(items[0].statistics.viewCount)
     }
@@ -52,8 +56,12 @@ const Videos = ( {videos} ) => {
     get_channel_icon()
   }, [channelId])
 
+  const handleVideoClick = () => {
+    history.push(`/watch/${_videoId}`)
+  }
+
  return (
-  <div className='video'>
+  <div className='video' onClick={handleVideoClick}>
    <div className='video-top'>
     <LazyLoadImage src={medium.url} effect='blur'/>
     <span className='video-top-duration'>{_duration}</span>
@@ -63,9 +71,9 @@ const Videos = ( {videos} ) => {
    </div>
    <div className='video-details'>
     <span>
-     <AiFillEye/> {numeral(views).format('0.a')}
+     <AiFillEye/> {numeral(views).format('0.a')} •
     </span>
-    <span>{moment(publishedAt).fromNow()}</span>
+    <span className='m-1'>{moment(publishedAt).fromNow()}</span>
    </div>
    <div className='video-channel'>
     <LazyLoadImage src={channelIcon?.url} effect='blur'/> 
