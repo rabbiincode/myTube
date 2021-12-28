@@ -87,7 +87,7 @@ export const getVideosByCategory = (keyword) => async (dispatch, getstate) => {
       })
       dispatch({
           type: SELECTED_VIDEO_SUCCESS,
-          payload: data.items[0]
+          payload: data.items[0],
       })
 
      } catch (error) {
