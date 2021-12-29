@@ -1,4 +1,4 @@
-import {HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCCESS, HOME_VIDEOS_FAIL, SELECTED_VIDEO_REQUEST, SELECTED_VIDEO_SUCCESS, SELECTED_VIDEO_FAIL} from '../actionType'
+import {HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCCESS, HOME_VIDEOS_FAIL, SELECTED_VIDEO_REQUEST, SELECTED_VIDEO_SUCCESS, SELECTED_VIDEO_FAIL, RELATED_VIDEOS_REQUEST, RELATED_VIDEOS_SUCCESS, RELATED_VIDEOS_FAIL} from '../actionType'
 
 import request from '../../api'
 
@@ -98,3 +98,31 @@ export const getVideosByCategory = (keyword) => async (dispatch, getstate) => {
          })
      }
  }
+
+ export const getRelatedVideos= (id) => async dispatch => {
+    try {
+     dispatch({
+         type: RELATED_VIDEOS_REQUEST,
+     })
+     
+     const { data } = await request('./search', {
+         params: {
+             part: 'snippet',
+             relatedToVideoId: id,
+             maxResults: 15,
+             type: 'video'
+         }
+     })
+     dispatch({
+         type: RELATED_VIDEOS_SUCCESS,
+         payload: data.items,
+     })
+
+    } catch (error) {
+        console.log(error.response.data.message)
+        dispatch({
+            type: RELATED_VIDEOS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
