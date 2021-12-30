@@ -9,13 +9,15 @@ import numeral from 'numeral'
 import { Row, Col } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
-const RelatedVideos = ({video}) => {
+const RelatedVideos = ({video, searchScreen}) => {
 
   const {id, snippet: {channelId, channelTitle, description, title, publishedAt, thumbnails: {medium}}} = video
 
   const [views, setViews] = useState(null)
   const [duration, setDuration] = useState(null)
   const [channelIcon, setChannelIcon] = useState(null)
+  
+  const isVideo = id.kind === 'youtube#video'
  
   const seconds = moment.duration(duration).asSeconds()
   const _duration = moment.utc(seconds * 1000).format('mm:ss')
@@ -54,43 +56,66 @@ const RelatedVideos = ({video}) => {
 
   // Click To play relatedVideo in watchScreen
   const handleClick = () => {
-    history.push(`/watch/${id.videoId}`)
+    isVideo ?
+      history.push(`/watch/${id.videoId}`) :
+        history.push(`/channel/${id.channelId}`)
   }
+
+  const thumbnail = !isVideo && 'videoHorizontal-thumbnail-channel'
 
  return (
   <Row className="relatedVideos m-1 py-2 align-items-center" onClick={handleClick}>
-   <Col xs={6} md={6} className='relatedVideos-left'>
+   <Col xs={6} md={ searchScreen ? 4 : 6 } className='relatedVideos-left'>
      <LazyLoadImage 
         src={medium.url}
         effect='blur'
-        className='relatedVideos-thumbnail'
+        className={`relatedVideos-thumbnail ${thumbnail}`}
         wrapperClassName='relatedVideos-thumbnail-wrapper'
      />
-      <span className='relatedVideos-duration'>{_duration}</span>
+     {
+       isVideo && (
+        <span className='relatedVideos-duration'>{_duration}</span>
+      )
+     }
+      
    </Col>
 
-   <Col xs={6} md={6} className='relatedVideos-right p-0'>
+   <Col xs={6} md={ searchScreen ? 8 : 6 } classname='relatedVideos-right p-0'>
      <p className="relatedVideos-title mb-1">
        {title}
      </p>
 
+
+     {
+       !isVideo && <p className='mt-1'>{description}</p>
+     }
+
      <div className="relatedVideos-channel d-flex align-items-center my-1">
-       {/* To show in Search Screen */}
-       {/* <LazyLoadImage 
-         src={'/images/person.png'}
-         effect='blur'
-       /> */}
+       {/* To show in Search Screen  */}
+       {
+         isVideo && (
+          <LazyLoadImage 
+          src={channelIcon?.url}
+          effect='blur'
+        />
+         )
+       }
+       
+
        <p className='mb-0'>{title}</p>
      </div>
 
-     <div className="relatedVideos-details">
-       <AiFillEye/> <span className='spar'>{numeral(views).format('0.a')}</span>•
-       <span className='spac'>{moment(publishedAt).fromNow()}</span>
-     </div>
+     {
+       isVideo && (
+         <div className="relatedVideos-details">
+          <AiFillEye/> <span className='spar'>{numeral(views).format('0.a')}</span>•
+          <span className='spac'>{moment(publishedAt).fromNow()}</span>
+        </div>
+       )
+     }
 
    </Col>
   </Row>
  )
 }
-
 export default RelatedVideos

@@ -1,4 +1,4 @@
-import {HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCCESS, HOME_VIDEOS_FAIL, SELECTED_VIDEO_REQUEST, SELECTED_VIDEO_SUCCESS, SELECTED_VIDEO_FAIL, RELATED_VIDEOS_REQUEST, RELATED_VIDEOS_SUCCESS, RELATED_VIDEOS_FAIL} from '../actionType'
+import {HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCCESS, HOME_VIDEOS_FAIL, SELECTED_VIDEO_REQUEST, SELECTED_VIDEO_SUCCESS, SELECTED_VIDEO_FAIL, RELATED_VIDEOS_REQUEST, RELATED_VIDEOS_SUCCESS, RELATED_VIDEOS_FAIL, SEARCH_VIDEOS_REQUEST, SEARCH_VIDEOS_SUCCESS, SEARCH_VIDEOS_FAIL} from '../actionType'
 
 import request from '../../api'
 
@@ -125,4 +125,39 @@ export const getVideosByCategory = (keyword) => async (dispatch, getstate) => {
             payload: error.response.data.message
         })
     }
+}
+
+//add pagination
+export const getVideosBySearch = (keyword) => async (dispatch, getstate) => {
+    try {
+     dispatch({
+      type: SEARCH_VIDEOS_REQUEST,
+      })
+   
+      const {data} = await request.get('/search', {
+       params: {
+        part: 'snippet',
+        maxResults: 20,
+        // pageToken: getstate().homeVideos.nextPageToken,
+        q: keyword,
+        type: 'video, channel'
+       },
+      })
+   
+      dispatch({
+       type: SEARCH_VIDEOS_SUCCESS,
+       payload: {
+          videos: data.items,
+          // nextPageToken: data.nextPageToken,
+          // category: keyword,
+       }
+      })
+    
+     } catch (error) {
+         console.log(error.message)
+         dispatch({
+          type: SEARCH_VIDEOS_FAIL,
+          payload: error.message
+         })
+     }
 }

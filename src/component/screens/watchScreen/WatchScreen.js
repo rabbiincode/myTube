@@ -36,7 +36,7 @@ const WatchScreen = () => {
              width='100%'
              height='100%'></iframe>
     </div>
-    {!loading ? (<VideoMetaData video={video} videoId={id} />) : (<h1>Loadingg</h1>)}
+    {!loading ? (<VideoMetaData video={video} videoId={id} />) : (<h1>Loading</h1>)}
 
     <Comments videoId={id} totalComments={video?.statistics?.commentCount}/>
    </Col>
