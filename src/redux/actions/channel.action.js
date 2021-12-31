@@ -30,7 +30,7 @@ export const getChannelDetails = (id) => async dispatch => {
 export const checkSuscriptionStatus = (id) => async (dispatch, getState) => {
     try {
      
-     const { data } = await request('./subscription', {
+     const { data } = await request('./subscriptions', {
          params: {
              part: 'snippet',
              forChannelId: id,
@@ -54,4 +54,4 @@ export const checkSuscriptionStatus = (id) => async (dispatch, getState) => {
             payload: error.message
         })
     }
-   }
+}

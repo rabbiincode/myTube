@@ -9,15 +9,15 @@ import numeral from 'numeral'
 import { Row, Col } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
-const RelatedVideos = ({video, searchScreen}) => {
+const RelatedVideos = ({video, searchScreen, subScreen}) => {
 
-  const {id, snippet: {channelId, channelTitle, description, title, publishedAt, thumbnails: {medium}}} = video
+  const {id, snippet: {channelId, channelTitle, description, title, publishedAt, thumbnails: {medium},}, resourseId} = video
 
   const [views, setViews] = useState(null)
   const [duration, setDuration] = useState(null)
   const [channelIcon, setChannelIcon] = useState(null)
   
-  const isVideo = id.kind === 'youtube#video'
+  const isVideo = !(id.kind === 'youtube#channel' || subScreen)
  
   const seconds = moment.duration(duration).asSeconds()
   const _duration = moment.utc(seconds * 1000).format('mm:ss')
@@ -35,8 +35,9 @@ const RelatedVideos = ({video, searchScreen}) => {
       setDuration(items[0].contentDetails.duration)
       setViews(items[0].statistics.viewCount)
     }
-    get_video_details()
-  }, [id])
+    if (isVideo)
+      get_video_details()
+  }, [id, isVideo])
 
 
   useEffect(() => {
@@ -54,18 +55,20 @@ const RelatedVideos = ({video, searchScreen}) => {
 
   const history = useHistory()
 
+  const _channelId = resourseId?.channelId || channelId
+
   // Click To play relatedVideo in watchScreen
   const handleClick = () => {
     isVideo ?
       history.push(`/watch/${id.videoId}`) :
-        history.push(`/channel/${id.channelId}`)
+        history.push(`/channel/${_channelId}`)
   }
 
   const thumbnail = !isVideo && 'videoHorizontal-thumbnail-channel'
 
  return (
   <Row className="relatedVideos m-1 py-2 align-items-center" onClick={handleClick}>
-   <Col xs={6} md={ searchScreen ? 4 : 6 } className='relatedVideos-left'>
+   <Col xs={6} md={ searchScreen || subScreen ? 4 : 6 } className='relatedVideos-left'>
      <LazyLoadImage 
         src={medium.url}
         effect='blur'
@@ -80,14 +83,14 @@ const RelatedVideos = ({video, searchScreen}) => {
       
    </Col>
 
-   <Col xs={6} md={ searchScreen ? 8 : 6 } classname='relatedVideos-right p-0'>
+   <Col xs={6} md={ searchScreen || subScreen ? 8 : 6 } className='relatedVideos-right p-0'>
      <p className="relatedVideos-title mb-1">
        {title}
      </p>
 
 
      {
-       !isVideo && <p className='mt-1'>{description}</p>
+       (searchScreen || subScreen) && <p className='mt-1 relatedVideos-desc'>{description}</p>
      }
 
      <div className="relatedVideos-channel d-flex align-items-center my-1">
@@ -111,6 +114,14 @@ const RelatedVideos = ({video, searchScreen}) => {
           <AiFillEye/> <span className='spar'>{numeral(views).format('0.a')}</span>•
           <span className='spac'>{moment(publishedAt).fromNow()}</span>
         </div>
+       )
+     }
+
+     {
+       subScreen && (
+         <p className='mt-2'>
+           {video.contentDetails.totalItemCount}{' '}videos
+         </p>
        )
      }
 

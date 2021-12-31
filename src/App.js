@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import WatchScreen from './component/screens/watchScreen/WatchScreen'
 import SearchScreen from './component/screens/SearchScreen'
+import SubscriptionScreen from './component/screens/subscriptionsScreen/SubscriptionScreen'
 
 
 const Layout = ({ children }) => {
@@ -66,6 +67,18 @@ const App = () => {
        <Route path='/watch/:id'>
         <Layout>
           <WatchScreen/>
+        </Layout>
+       </Route>
+
+       <Route path='/feed/subscriptions'>
+        <Layout>
+          <SubscriptionScreen/>
+        </Layout>
+       </Route>
+
+       <Route path='/channel/:channelId'>
+        <Layout>
+          channelScreen
         </Layout>
        </Route>
       

@@ -13,7 +13,7 @@ const Header = ({handleToggleSidebar}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    history.push(`search/${input}`)
+    history.push(`/search/${input}`)
   }
 
  return (
