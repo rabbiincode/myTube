@@ -12,6 +12,7 @@ import { useHistory } from 'react-router-dom'
 import WatchScreen from './component/screens/watchScreen/WatchScreen'
 import SearchScreen from './component/screens/SearchScreen'
 import SubscriptionScreen from './component/screens/subscriptionsScreen/SubscriptionScreen'
+import ChannelScreen from './component/screens/channelScreen/ChannelScreen'
 
 
 const Layout = ({ children }) => {
@@ -78,7 +79,7 @@ const App = () => {
 
        <Route path='/channel/:channelId'>
         <Layout>
-          channelScreen
+          <ChannelScreen/>
         </Layout>
        </Route>
       

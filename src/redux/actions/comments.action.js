@@ -1,13 +1,13 @@
 import request from "../../api"
 import { COMMENT_LIST_FAIL, COMMENT_LIST_REQUEST, COMMENT_LIST_SUCCESS, CREATE_COMMENT_FAIL, CREATE_COMMENT_SUCCESS } from "../actionType"
 
- export const getCommentsOfVideoById = (id) => async dispatch => {
+export const getCommentsOfVideoById = (id) => async dispatch => {
  try {
   dispatch({
       type: COMMENT_LIST_REQUEST,
   })
   
-  const { data } = await request('./commentThreads', {
+  const { data } = await request('/commentThreads', {
       params: {
           part: 'snippet', 
           videoId: id
@@ -22,7 +22,7 @@ import { COMMENT_LIST_FAIL, COMMENT_LIST_REQUEST, COMMENT_LIST_SUCCESS, CREATE_C
      console.log(error.response.data)
      dispatch({
          type: COMMENT_LIST_FAIL,
-         payload: error.message
+         payload: error.response.data.message
      })
   }
 }
@@ -30,9 +30,9 @@ import { COMMENT_LIST_FAIL, COMMENT_LIST_REQUEST, COMMENT_LIST_SUCCESS, CREATE_C
 export const addComment = (id, text) => async (dispatch, getState) => {
     try {
 
-        const obj = {snippet: {videoId: id, topLevelComment: {snippet: {textOriginal: text}}}}
+        const obj = {snippet: {videoId: id, topLevelComment: {snippet: {textOriginal: text},},},}
     
-     await request.post('./commentThreads', obj, {
+     await request.post('/commentThreads', obj, {
          params: {
              part: 'snippet',
          },
@@ -53,4 +53,4 @@ export const addComment = (id, text) => async (dispatch, getState) => {
             payload: error.response.data.message
         })
      }
-   }
+}

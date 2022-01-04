@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom'
 
 const RelatedVideos = ({video, searchScreen, subScreen}) => {
 
-  const {id, snippet: {channelId, channelTitle, description, title, publishedAt, thumbnails: {medium},}, resourseId} = video
+  const {id, snippet: {channelId, channelTitle, description, title, publishedAt, thumbnails: {medium}, resourceId}} = video
 
   const [views, setViews] = useState(null)
   const [duration, setDuration] = useState(null)
@@ -55,7 +55,7 @@ const RelatedVideos = ({video, searchScreen, subScreen}) => {
 
   const history = useHistory()
 
-  const _channelId = resourseId?.channelId || channelId
+  const _channelId = resourceId?.channelId || channelId
 
   // Click To play relatedVideo in watchScreen
   const handleClick = () => {

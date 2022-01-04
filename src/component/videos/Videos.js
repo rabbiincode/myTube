@@ -10,9 +10,9 @@ import numeral from 'numeral'
 
 import { useHistory } from 'react-router-dom'
 
-const Videos = ( {videos} ) => {
+  const Videos = ( {videos, channelScreen} ) => {
 
-  const { id, snippet:{channelId, channelTitle, title, publishedAt, thumbnails: {medium}, } } = videos
+  const { id, snippet:{channelId, channelTitle, title, publishedAt, thumbnails: {medium}, }, contentDetails } = videos
 
   //state variables for the views
   const [views, setViews] = useState(null)
@@ -22,7 +22,7 @@ const Videos = ( {videos} ) => {
   const seconds = moment.duration(duration).asSeconds()
   const _duration = moment.utc(seconds * 1000).format('mm:ss')
 
-  const _videoId = id?.videoId || id
+  const _videoId = id?.videoId || contentDetails?.videoId || id
 
   const history = useHistory()
 
@@ -75,11 +75,15 @@ const Videos = ( {videos} ) => {
     </span>
     <span className='m-1'>{moment(publishedAt).fromNow()}</span>
    </div>
-   <div className='video-channel'>
-    <LazyLoadImage src={channelIcon?.url} effect='blur'/> 
-
-    <p>{channelTitle}</p>
-   </div>
+   {
+     !channelScreen && (
+       <div className='video-channel'>
+         <LazyLoadImage src={channelIcon?.url} effect='blur'/> 
+  
+         <p>{channelTitle}</p>
+       </div>
+     )
+   }
   </div>
  )
 }

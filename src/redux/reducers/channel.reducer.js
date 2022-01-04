@@ -49,4 +49,4 @@ export const channelDetailsReducers = (
            default:
               return state
          }
-      }
+}

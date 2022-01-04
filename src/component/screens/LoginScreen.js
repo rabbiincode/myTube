@@ -4,8 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { login } from '../../redux/actions/auth.action'
 
-
-import './loginScreen.scss'
+import './_loginScreen.scss'
 
 const LoginScreen = () => {
 

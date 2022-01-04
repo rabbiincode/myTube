@@ -1,4 +1,4 @@
-@import '../../_base.scss';
+@use'../../_base.scss' as *;
 
 .login{
  height: 100vh;

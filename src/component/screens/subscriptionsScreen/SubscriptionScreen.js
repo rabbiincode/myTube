@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { useDispatch, useSelector } from 'react-redux'
-import { getVideosByChannel } from '../../../redux/actions/videos.action'
+import { getSubscribedChannels } from '../../../redux/actions/videos.action'
 import RelatedVideos from '../../relatedVideos/RelatedVideos'
 import './_subscriptions.scss'
 
@@ -11,7 +11,7 @@ const SubscriptionScreen = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-   dispatch(getVideosByChannel())
+   dispatch(getSubscribedChannels())
   }, [dispatch])
 
   const { videos, loading } = useSelector(state=>state.subscriptionsChannel)

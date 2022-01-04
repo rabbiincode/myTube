@@ -7,7 +7,7 @@ export const getChannelDetails = (id) => async dispatch => {
       type: CHANNEL_DETAILS_REQUEST,
   })
   
-  const { data } = await request('./channels', {
+  const { data } = await request('/channels', {
       params: {
           part: 'snippet, statistics, contentDetails',
           id: id,
@@ -22,7 +22,7 @@ export const getChannelDetails = (id) => async dispatch => {
      console.log(error.response.data)
      dispatch({
          type: CHANNEL_DETAILS_FAIL,
-         payload: error.message
+         payload: error.response.data
      })
   }
 }
@@ -30,7 +30,7 @@ export const getChannelDetails = (id) => async dispatch => {
 export const checkSuscriptionStatus = (id) => async (dispatch, getState) => {
     try {
      
-     const { data } = await request('./subscriptions', {
+     const { data } = await request('/subscriptions', {
          params: {
              part: 'snippet',
              forChannelId: id,
@@ -43,7 +43,7 @@ export const checkSuscriptionStatus = (id) => async (dispatch, getState) => {
      })
      dispatch({
          type: SET_SUBSCRIPTION_STATUS,
-         payload: data.items.length!==0,
+         payload: data.items.length !==0,
      })
      //console.log(data);
    

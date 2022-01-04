@@ -1,4 +1,12 @@
-import {HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCCESS, HOME_VIDEOS_FAIL, SELECTED_VIDEO_REQUEST, SELECTED_VIDEO_SUCCESS, SELECTED_VIDEO_FAIL, RELATED_VIDEOS_REQUEST, RELATED_VIDEOS_SUCCESS, RELATED_VIDEOS_FAIL, SEARCH_VIDEOS_REQUEST, SEARCH_VIDEOS_SUCCESS, SEARCH_VIDEOS_FAIL, SUBSCRIPTIONS_CHANNEL_REQUEST, SUBSCRIPTIONS_CHANNEL_SUCCESS, SUBSCRIPTIONS_CHANNEL_FAIL} from '../actionType'
+import 
+      {
+        HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCCESS, HOME_VIDEOS_FAIL, 
+        SELECTED_VIDEO_REQUEST, SELECTED_VIDEO_SUCCESS, SELECTED_VIDEO_FAIL, 
+        RELATED_VIDEOS_REQUEST, RELATED_VIDEOS_SUCCESS, RELATED_VIDEOS_FAIL, 
+        SEARCH_VIDEOS_REQUEST, SEARCH_VIDEOS_SUCCESS, SEARCH_VIDEOS_FAIL, 
+        SUBSCRIPTIONS_CHANNEL_REQUEST, SUBSCRIPTIONS_CHANNEL_SUCCESS, SUBSCRIPTIONS_CHANNEL_FAIL, 
+        CHANNELS_VIDEOS_REQUEST, CHANNELS_VIDEOS_SUCCESS, CHANNELS_VIDEOS_FAIL
+      } from '../actionType'
 
 import request from '../../api'
 
@@ -162,21 +170,22 @@ export const getVideosBySearch = (keyword) => async (dispatch, getstate) => {
      }
 }
 
-export const getVideosByChannel = (id) => async (dispatch, getState) => {
+export const getSubscribedChannels = (id) => async (dispatch, getState) => {
     try {
         dispatch({
             type: SUBSCRIPTIONS_CHANNEL_REQUEST
         })
      
-     const { data } = await request('./subscriptions', {
+     const { data } = await request('/subscriptions', {
          params: {
-             part: 'snippet',
+             part: 'snippet, contentDetails',
              mine: true
          },
          //getting the Access Token from the Redux store
          headers:{
              Authorization: `Bearer ${getState().auth.accessToken}`
          }
+         
      })
      dispatch({
          type: SUBSCRIPTIONS_CHANNEL_SUCCESS,
@@ -187,6 +196,44 @@ export const getVideosByChannel = (id) => async (dispatch, getState) => {
         console.log(error.response.data)
         dispatch({
             type: SUBSCRIPTIONS_CHANNEL_FAIL,
+            payload: error.response.data
+        })
+    }
+}
+
+export const getVideosByChannel = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: CHANNELS_VIDEOS_REQUEST
+        })
+     
+        //1. get upload playlist id
+     const { data: {items} } = await request('/channels', {
+         params: {
+             part: 'contentDetails',
+             id: id,
+         },
+     })
+
+       const uploadPlaylistId = items[0].contentDetails.relatedPlaylists.uploads
+
+        //2. get the videos using the id 
+        const { data } = await request('/playlistItems', {
+            params: {
+                part: 'contentDetails, snippet',
+                playlistId: uploadPlaylistId
+            },
+        })
+
+     dispatch({
+         type: CHANNELS_VIDEOS_SUCCESS,
+         payload: data.items,
+     })
+   
+    } catch (error) {
+        console.log(error.response.data.message)
+        dispatch({
+            type: CHANNELS_VIDEOS_FAIL,
             payload: error.response.data
         })
     }
