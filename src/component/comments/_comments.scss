@@ -1,0 +1,35 @@
+@use'../../_base.scss' as *;
+
+.comments{
+ padding-left: 1rem;
+ &-form {
+  img {
+   width: 50px;
+   height: 50px;
+   object-fit: contain;
+   margin-left: 0.3rem;
+  }
+  input {
+   background: transparent;
+   border: none;
+   border-bottom: 2px solid #353946;
+   color: #fff;
+   &:focus {
+    outline: none;
+   }
+  }
+  .spac {
+   margin-right: 1.5rem;
+  }
+ 
+  button {
+   background-color: #353946;
+   color: #fff;
+   letter-spacing: 0.5px;
+   &:focus {
+    border: none;
+    outline: none;
+   }
+  }
+ }
+}

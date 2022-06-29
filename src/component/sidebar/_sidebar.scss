@@ -1,0 +1,118 @@
+@use'../../_base.scss' as *;
+
+.sidebar{
+ background: $black-primary;
+ color: white;
+
+ display: flex;
+ flex-direction: column;
+ overflow: hidden;
+ padding-top: 1rem;
+ text-align: center;
+
+ &:hover{
+  overflow-y: auto;
+  scroll-behavior: smooth;
+ }
+
+ .simplebar-scrollbar::before{
+  background: lightgrey;
+ }
+ 
+ width: 250px;
+ height: 93vh;
+ transition: transform 0.2s ease-in;
+
+ position: sticky;
+ top: 7vh;
+ left: 0;
+
+ hr{
+  margin-right: 0.9rem;
+ }
+
+ a {
+  color: white;
+  &:hover {
+   color: $text-color;
+   text-decoration: none;
+  }
+ 
+ }
+li{
+ display: flex;
+ align-items: center;
+ color: #ccc9c9;
+
+ padding: 0.6rem 1.5rem;
+ cursor: pointer;
+
+ span{
+  margin-left: 1.5rem;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  color: #fff;
+ }
+
+ .sub{
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-left: 0px;
+ }
+
+ .more{
+  color: darkgray;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-left: 0px;
+ }
+
+ &:hover{
+  background-color: $border-color;
+  margin-right: 0.9rem;
+ }
+}
+
+&.open{
+ transform: translatex(0);
+}
+
+}
+
+@media (max-width: $breakpoint-medium){
+ .sidebar{
+  width: 100px;
+
+  li{
+   flex-direction: column;
+   margin-bottom: 1rem;
+   span{
+    margin-left: 0;
+   }
+
+   &:hover{
+    margin-right: 0;
+   }
+
+  }
+
+  .none{
+   display: none;
+  }
+
+  hr{
+   display: none;
+  }
+ }
+}
+
+@media (max-width: $breakpoint-small){
+ .sidebar{
+  width: 100px;
+  transform: translate(-100%);
+
+  position: fixed;
+  z-index: 1000;
+ }
+}

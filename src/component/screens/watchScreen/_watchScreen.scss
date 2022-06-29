@@ -1,0 +1,21 @@
+@use'../../../_base.scss' as *;
+
+.watchScreen-player{
+ height: 60vh;
+ background-color: #353340;
+ width: 100%;
+ margin-top: 1rem;
+ margin-bottom: 1rem;
+}
+
+@media (max-width: $breakpoint-medium) {
+ .watchScreen-player {
+  height: 50vh;
+ }
+}
+
+@media (max-width: $breakpoint-small) {
+ .watchScreen-player {
+  height: 35vh;
+ }
+}
