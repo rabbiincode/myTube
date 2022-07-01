@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './_videos.scss'
 
-import {AiFillEye} from 'react-icons/ai'
 import request from '../../api'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
@@ -71,7 +70,7 @@ import { useHistory } from 'react-router-dom'
    </div>
    <div className='video-details'>
     <span>
-     <AiFillEye/> {numeral(views).format('0.a')} •
+     {numeral(views).format('0.a')} views •
     </span>
     <span className='m-1'>{moment(publishedAt).fromNow()}</span>
    </div>

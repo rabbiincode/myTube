@@ -25,7 +25,7 @@ const WatchScreen = () => {
 
    const {video, loading} = useSelector(state=>state.selectedVideo)
 
-   const {videos, loading: relatedVideosLoading} = useSelector(state=>state.relatedVideos)
+   const {videos} = useSelector(state=>state.relatedVideos)
 
    const fetchData = () => {
       dispatch(getRelatedVideos())
@@ -65,7 +65,7 @@ const WatchScreen = () => {
         }
       >
 
-        {!loading ? (videos ?.filter(video => video.snippet)
+        {!loading ? (videos?.filter(video => video.snippet)
             .map(video => (<RelatedVideos video={video} key={video.id.videoId} />
          ))
         ) : ( 
