@@ -1,35 +1,69 @@
 @use'../../_base.scss' as *;
 
 .comments{
- padding-left: 1rem;
- &-form {
-  img {
-   width: 50px;
-   height: 50px;
-   object-fit: contain;
-   margin-left: 0.3rem;
+  &-count {
+    margin-bottom: 1.7rem;
+    .number{
+      color: #fff;
+    }
+    .sort{
+      font-size: 0.9rem;
+      margin-left: 2rem;
+      span{
+        color: #fff;
+      }
+    }
   }
-  input {
-   background: transparent;
-   border: none;
-   border-bottom: 2px solid #353946;
-   color: #fff;
-   &:focus {
-    outline: none;
-   }
+
+  &-form {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+
+    form{
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    input {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid #353946;
+      color: #fff;
+      &:focus {
+        outline: none;
+      }
+    }
+    .span {
+      margin-right: 1.5rem;
+    }
+
+    button:disabled{
+      background-color: $black-category;
+      color: gray;
+    }
+
+    button {
+      background-color: rgb(79, 170, 206);
+      color: #000;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 30px;
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
   }
-  .spac {
-   margin-right: 1.5rem;
+  &-list {
+    margin-top: 1.7rem;
   }
- 
-  button {
-   background-color: #353946;
-   color: #fff;
-   letter-spacing: 0.5px;
-   &:focus {
-    border: none;
-    outline: none;
-   }
-  }
- }
 }

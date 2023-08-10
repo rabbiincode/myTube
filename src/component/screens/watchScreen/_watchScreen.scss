@@ -1,21 +1,41 @@
 @use'../../../_base.scss' as *;
 
+.watch-screen{
+  padding: 1.4rem 4rem;
+  width: 100%;
+}
+
 .watchScreen-player{
- height: 60vh;
- background-color: #353340;
- width: 100%;
- margin-top: 1rem;
- margin-bottom: 1rem;
+  height: 75vh;
+  background-color: #353340;
+  width: 100%;
+  margin-bottom: 0.5rem;
 }
 
-@media (max-width: $breakpoint-medium) {
- .watchScreen-player {
-  height: 50vh;
- }
+.large-screen-hide{
+  display: none;
 }
 
-@media (max-width: $breakpoint-small) {
- .watchScreen-player {
-  height: 35vh;
- }
+@media (max-width: $breakpoint-medium){
+  .watch-screen{
+    padding: 1.4rem 1.5rem;
+  }
+
+  .watchScreen-player {
+    height: 50vh;
+  }
+
+  .large-screen-hide{
+    display: flex;
+  }
+
+  .small-screen-hide{
+    display: none;
+  }
+}
+
+@media (max-width: $breakpoint-small){
+  .watchScreen-player {
+    height: 35vh;
+  }
 }

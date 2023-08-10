@@ -1,5 +1,27 @@
-.app-container{
- display: flex;
- max-width: 100%;
-} 
+@use'./_base.scss' as *;
 
+.app-container{
+  display: flex;
+  max-width: 100%;
+  .hide{
+    display: none;
+  }
+  .show{
+    display: flex;
+    //position: absolute;
+  }
+}
+
+.app-main{
+  max-width: 85% !important;
+}
+
+.app-main-1{
+  max-width: 95% !important;
+}
+
+@media (max-width: $breakpoint-medium){
+  .app-main{
+    max-width: 100% !important;
+  }
+}

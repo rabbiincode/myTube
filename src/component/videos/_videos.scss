@@ -1,61 +1,73 @@
 @use'../../_base.scss' as *;
 
 .video{
- margin-bottom: 1rem;
- padding: 0.7rem;
+  margin-bottom: 1rem;
+  padding: 0.7rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
 
- font-weight: 500;
- font-size: 0.9rem;
+  &-top{
+    margin-bottom: 0.5rem;
+    position: relative;
+    
+    .lazy-load-image-background {
+      width: 100%;
+    }
 
- cursor: pointer;
-
- &-top{
-  margin-bottom: 0.5rem;
-  position: relative;
-   .lazy-load-image-background {
-     width: 100%;
-   }
-  img{
-   width: 100%;
+    img{
+      width: 100%;
+      border-radius: 8px;
+    }
+    
+    &-duration{
+      position: absolute;
+      bottom: 0.3rem;
+      right: 0.3rem;
+      padding: 0.2rem;
+      background: #080808bc;
+      border-radius: 3px;
+    }
   }
-  &-duration{
-     position: absolute;
-   
-   bottom: 0.3rem;
-   right: 0.3rem;
 
-   padding: 0.2rem;
-   background: #080808bc;
-   border-radius: 3px;
+  &-descriptions{
+    display: flex;
+    margin: 0.8rem 0 0.5rem 0;
+
+    &-channel{
+      img{
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+        cursor: pointer;
+      }
+    }
+
+    &-details{
+      &-video-title{
+        color: #fff;
+        font-size: medium;
+        margin-bottom: 0.4rem;
+        @include line-clamp(1)
+      }
+
+      &-views{
+        .view-count{
+          text-transform: uppercase;
+        }
+      }
+
+      p{
+        margin: 0 !important;
+      }
+    }
   }
- }
+}
 
- &-title{
-  margin-bottom: 0.1rem;
-
-  color: #fff;
-  @include line-clamp(1)
- }
-
- &-details{
-  display: flex;
-  align-items: center;
- }
-
- &-channel{
-  display: flex;
-  align-items: center;
-  margin: 0.5rem 0;
-
-  img{
-   width: 36px;
-   height: 36px;
-   border-radius: 50%;
-   margin-right: 0.5rem;
-   cursor: pointer;
+@media (max-width: $breakpoint-medium){
+  .video{
+    margin-bottom: 0;
   }
-  p{
-   margin-bottom: 0;
-  }
- }
 }

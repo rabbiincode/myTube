@@ -8,35 +8,31 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import CustomHelmet from '../../helmet/CustomHelmet'
 
 const SearchScreen = () => {
-
- const { Query } = useParams()
+  const { Query } = useParams()
+  const dispatch = useDispatch()
+  const { videos, loading } = useSelector(state => state.searchVideos.videos)
   //console.log(Query);
 
-  const dispatch = useDispatch()
-
   useEffect(() => {
-   dispatch(getVideosBySearch(Query))
+    dispatch(getVideosBySearch(Query))
   }, [dispatch, Query])
-
-  const { videos, loading } = useSelector(state=>state.searchVideos.videos)
-
  
- return (
-  //videos?.map... ?- here is called Optional chaining
-  <Container>
-    <CustomHelmet title={Query}/>
-   {
-    !loading ? (
-     videos?.map(video => (
-      <RelatedVideos video={video} key={video.id.videoId} searchScreen/>
-     ))
-    ) : (
-      <SkeletonTheme baseColor='#0d1015' highlightColor='#0d1015'>
-        <Skeleton width='100%' height='160px' count={20}/>
-      </SkeletonTheme>
-    )
-   }
-  </Container>
+  return (
+    //videos?.map... '?' - here is called Optional chaining
+    <Container className='mt-3'>
+      <CustomHelmet title={Query}/>
+      {
+        !loading ? (
+          videos?.map(video => (
+            <RelatedVideos video={video} key={video.id.videoId} searchScreen/>
+          ))
+        ) : (
+          <SkeletonTheme baseColor='#0d1015' highlightColor='#0d1015'>
+            <Skeleton width='100%' height='160px' count={20}/>
+          </SkeletonTheme>
+        )
+      }
+    </Container>
   )
 }
 

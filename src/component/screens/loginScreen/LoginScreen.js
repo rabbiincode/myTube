@@ -4,17 +4,14 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { login } from '../../../redux/actions/auth.action'
 import CustomHelmet from '../../helmet/CustomHelmet'
-
 import './_loginScreen.scss'
 
 const LoginScreen = () => {
-
   const dispatch = useDispatch()
-
   const accessToken = useSelector(state => state.auth.accessToken)
 
   const handleLogin = () => {
-   dispatch(login())
+    dispatch(login())
   }
   
   //to redirect to home route if accessToken !null
@@ -26,16 +23,16 @@ const LoginScreen = () => {
     }
   }, [accessToken, history])
 
- return (
-  <div className='login'>
-   <CustomHelmet title='myTube/login'/>
-   <div className="login-container">
-    <img src="./images/logo1.png" alt="" />
-    <button onClick={handleLogin}>Login with goggle</button>
-    <p>myTube is made using YOUTUBE DATA API</p>
-   </div>
-  </div>
- )
+  return (
+    <div className='login'>
+      <CustomHelmet title='myTube/login'/>
+      <div className="login-container">
+        <img src="./images/logo1.png" alt="img" />
+        <button onClick={handleLogin}>Login with goggle</button>
+        <p>myTube is made using YOUTUBE DATA API</p>
+      </div>
+    </div>
+  )
 }
 
 export default LoginScreen

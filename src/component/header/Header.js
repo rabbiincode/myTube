@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
-import './_header.scss'
 import { AiOutlineSearch } from 'react-icons/ai'
-import { MdOutlineNotifications, MdOutlineApps, MdMic, MdOutlineCreateNewFolder } from 'react-icons/md'
-import { useHistory } from 'react-router-dom'
+import { MdOutlineNotifications, MdMic, MdOutlineCreateNewFolder, MdOutlineMenu } from 'react-icons/md'
+import { Link, useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import './_header.scss'
 
-const Header = ({handleToggleSidebar}) => {
-
+const Header = ({toggleSidebar, handleToggleSidebar }) => {
   const [input, setInput] = useState('')
-
+  const photo  = useSelector(state => state.auth?.user)
   const history = useHistory()
 
   const handleSubmit = (e) => {
@@ -16,51 +15,41 @@ const Header = ({handleToggleSidebar}) => {
     history.push(`/search/${input}`)
   }
 
-  const photo  = useSelector(state=>state.auth?.user)
+  return (
+    <div className={`header ${toggleSidebar && 'toggleBackground'}`}>
+      <div className='header-1'>
+        <div className={`header-menu ${toggleSidebar && 'toggleBackground-menu'}`} onClick = {() => handleToggleSidebar()}>
+          <MdOutlineMenu size={30}/>
+        </div>
 
- return (
-  <div className='header'>
-    <div className='header-1'>
-
-      <div className="header-hamburger" onClick = { () => handleToggleSidebar() }>
-        <span className="line1"></span>
-        <span className="line2"></span>
-        <span className="line3"></span>
+        <div className='header-tube'>
+          <Link to="/">
+            <img src={'/images/youtube.png'} alt='img' className='header-logo' />
+            <span className='header-name'>YouTube</span>
+          </Link>
+        </div>
       </div>
 
-      <div className='header-tube'>
+      <div className="header-search">
+        <form onSubmit={handleSubmit}>
+          <input type='text' placeholder='Search' value={input} onChange={e => setInput(e.target.value)} />
+          <button type='submit'>
+            <AiOutlineSearch size={25}/>
+          </button>
+        </form>
+        <button className='mic'><MdMic size={25}/></button>
+      </div>
+
+      <div className='header-icons'>
+        <span><MdOutlineCreateNewFolder size={25}/></span>
+        <span><MdOutlineNotifications size={25}/></span>
         <img
-         src={'/images/logo1.png'} 
-         alt='myTube'
-         className='header-logo'
+          src={photo?.photoURL}
+          alt='avatar'
         />
-        YouTube
       </div>
-
     </div>
-
-   <div className="header-search">
-     <form onSubmit={handleSubmit}>
-        <input type='text' placeholder='Search' value={input} onChange={e=>setInput(e.target.value)}/>
-        <button type='submit'>
-          <AiOutlineSearch size={25}/>
-        </button>
-     </form>
-     <MdMic className='mic' size={28}/>
-   </div>
-
-    <div className='header-icons'>
-      <MdOutlineCreateNewFolder size={28}/>
-      <MdOutlineApps size={28}/>
-      <MdOutlineNotifications size={28}/>
-      <img
-        src={photo?.photoURL}
-        alt='avartar'
-      />
-    </div>
-
-  </div>
- )
+  )
 }
 
 export default Header

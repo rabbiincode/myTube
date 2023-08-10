@@ -1,103 +1,117 @@
 @use'../../_base.scss' as *;
 
 .relatedVideos {
- border-bottom: 0.3px solid $border-color;
-
- cursor: pointer;
-
- &-left {
-  position: relative;
-  text-align: center;
-  padding-left: 0 !important;
- }
- &-thumbnail {
   width: 100%;
-  &-channel{
-   width: 50%;
-   border-radius: 50%;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  overflow: hidden;
+
+  &-search-screen {
+    margin-bottom: 1rem !important;
   }
 
-  &-wrapper {
-   width: 100%;
-  }
- }
-
- &-duration {
-  position: absolute;
-
-  bottom: 0.4rem;
-  right: 1rem;
-
-  padding: 0.2rem;
-  font-size: 0.9rem;
-  background: #081818ec;
-  border-radius: 3px;
- }
-
- &-details {
-  font-size: 0.9rem;
-  .spar{
-   margin-right: 0.3rem;
-  }
-  .spac{
-   margin-left: 0.3rem;
-  }
- }
-
- &-title {
-  font-size: 1rem;
-
-  color: #fff;
-  letter-spacing: 0.1px;
-
-  @include line-clamp(2)
- }
-
- &-desc {
-  @include line-clamp(2)
- }
-
- &-channel {
-  img {
-   width: 36px;
-   height: 36px;
-
-   border-radius: 50%;
-   margin-right: 0.5rem;
-   cursor: pointer;
-  }
-  p {
-   font-size: 0.9rem;
-   @include line-clamp(1)
-  }
- }
-}
-
-@media (max-width: $breakpoint-small) {
- .relatedVideos {
-  font-size: 0.8rem;
-
-  &-details {
-   @include line-clamp(1)
-  }
-  &-channel {
-   margin: 0.1rem 0;
-
-   img {
-    display: none;
-   }
-   p {
-    font-size: 0.9rem;
-   }
+  &-left {
+    position: relative;
+    text-align: center;
   }
 
-  &-desc {
-   display: none;
+  &-thumbnail {
+    width: 100%;
+    border-radius: 8px;
+
+    &-wrapper {
+      width: 100%;
+    }
+  }
+
+  &-duration {
+    background: #081818ec;
+    position: absolute;
+    bottom: 0.4rem;
+    right: 1rem;
+    padding: 0 0.2rem;
+    font-size: 0.8rem;
+    border-radius: 3px;
   }
 
   &-title {
-   font-size: 1rem;
-   @include line-clamp(2)
+    font-size: 0.9rem;
+    color: #fff;
+    letter-spacing: 0.1px;
+    @include line-clamp(2)
   }
- }
+  &-font {
+    font-size: 1.2rem;
+  }
+
+  &-details {
+    font-size: 0.8rem;
+
+    img {
+      width: 25px;
+      height: 25px;
+      margin-right: 0.7rem;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .icon {
+      display: flex;
+      align-items: center;
+      margin: 0.5rem 0 0.9rem 0; 
+    }
+    .spar {
+      margin-right: 0.3rem;
+      text-transform: uppercase;
+    }
+    .span {
+      margin-left: 0.3rem;
+    }
+  }
+
+  &-desc {
+    font-size: 0.8rem;
+    @include line-clamp(2)
+  }
+}
+
+@media (max-width: $breakpoint-medium) {
+  .relatedVideos {
+    &-search-screen {
+      margin-bottom: 2.5rem !important;
+    }
+
+    &-right {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &-right {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: initial;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-small) {
+  .relatedVideos {
+    font-size: 0.8rem;
+
+    &-details {
+      @include line-clamp(1)
+    }
+
+    &-desc {
+      display: none;
+    }
+
+    &-title {
+      font-size: 1rem;
+      @include line-clamp(2)
+    }
+  }
 }

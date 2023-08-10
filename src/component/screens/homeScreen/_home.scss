@@ -1,0 +1,9 @@
+@use'../../../_base.scss' as *;
+
+@media (max-width: $breakpoint-medium){
+  .home{
+    &-videos{
+      padding: 0 3rem;
+    }
+  }
+}

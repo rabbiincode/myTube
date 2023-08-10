@@ -1,45 +1,44 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
-import Header from './component/header/Header'
-import HomeScreen from './component/screens/homeScreen/HomeScreen'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
-import Sidebar from './component/sidebar/Sidebar'
-
-import './_app.scss'
-import LoginScreen from './component/screens/loginScreen/LoginScreen'
-import {Redirect, Route, Switch} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import Header from './component/header/Header'
+import Sidebar from './component/sidebar/Sidebar'
+import HomeScreen from './component/screens/homeScreen/HomeScreen'
 import WatchScreen from './component/screens/watchScreen/WatchScreen'
+import LoginScreen from './component/screens/loginScreen/LoginScreen'
 import SearchScreen from './component/screens/searchScreen/SearchScreen'
-import SubscriptionScreen from './component/screens/subscriptionsScreen/SubscriptionScreen'
 import ChannelScreen from './component/screens/channelScreen/ChannelScreen'
+import SubscriptionScreen from './component/screens/subscriptionsScreen/SubscriptionScreen'
+import './_app.scss'
 
-
-const Layout = ({ children }) => {
-
-  const [sidebar, toggleSidebar] = useState(false)
-  const handleToggleSidebar = () => toggleSidebar(value => !value)
+const Layout = ({ children, hideSidebar }) => {
+  const [toggleSidebar, setToggleSidebar] = useState(false)
+  const handleToggleSidebar = () => setToggleSidebar(!toggleSidebar)
 
   return(
     <>
-     <Header handleToggleSidebar={handleToggleSidebar} />
-     
-     <div className="app-container">
-       <Sidebar
-         sidebar={sidebar}
-         handleToggleSidebar={handleToggleSidebar}
-       />
-       <Container className="app-main">
-         {children}    
-       </Container>
-     </div>
+      <Header toggleSidebar={toggleSidebar} handleToggleSidebar={handleToggleSidebar}/>
+      <div className="app-container">
+        <div className={`${hideSidebar && 'hide'} ${toggleSidebar && 'show'}`}>
+          <Sidebar
+            toggleSidebar={toggleSidebar}
+            handleToggleSidebar={handleToggleSidebar}
+          />
+        </div>
+        <Container className={`app-main ${toggleSidebar && 'app-main-1'}`}>
+          {children}
+        </Container>
+      </div>
     </>
   )
 }
 
 const App = () => {
-  const {accessToken, loading} = useSelector(state => state.auth)
-
+  const [hideSidebar, setHideSidebar] = useState(true)
+  const { accessToken, loading } = useSelector(state => state.auth)
   const history = useHistory()
 
   useEffect(() => {
@@ -48,47 +47,46 @@ const App = () => {
     }
   }, [accessToken, loading, history])
 
-   return( 
-      <Switch>
-        <Route path='/' exact>
-          <Layout>
-            <HomeScreen />
-          </Layout>
-       </Route>
-
-       <Route path='/auth'>
-         <LoginScreen />
-       </Route>
-
-       <Route path='/search/:Query'>
-         <Layout>
-          <SearchScreen />
-         </Layout>
-       </Route>
-       
-       <Route path='/watch/:id'>
+  return( 
+    <Switch>
+      <Route path='/' exact>
         <Layout>
+          <HomeScreen/>
+        </Layout>
+      </Route>
+
+      <Route path='/auth'>
+        <LoginScreen/>
+      </Route>
+
+      <Route path='/search/:Query'>
+        <Layout>
+          <SearchScreen/>
+        </Layout>
+      </Route>
+
+      <Route path='/watch/:id'>
+        <Layout hideSidebar={hideSidebar}>
           <WatchScreen/>
         </Layout>
-       </Route>
+      </Route>
 
-       <Route path='/feed/subscriptions'>
+      <Route path='/feed/subscriptions'>
         <Layout>
           <SubscriptionScreen/>
         </Layout>
-       </Route>
+      </Route>
 
-       <Route path='/channel/:channelId'>
+      <Route path='/channel/:channelId'>
         <Layout>
           <ChannelScreen/>
         </Layout>
-       </Route>
-      
-       <Route>
+      </Route>
+
+      <Route>
         <Redirect to='/' />
-       </Route>
-       
-      </Switch>
+      </Route>
+    </Switch>
   )
 }
 

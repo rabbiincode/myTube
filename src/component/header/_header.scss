@@ -1,137 +1,148 @@
 @use'../../_base.scss' as *;
 
 .header{
- display: flex;
- justify-content: space-between;
- align-items: center;
-
- padding: 1rem 1rem 1rem 0.5rem;
-
- background-color: $black-primary;
-
- height: 7vh;
- width: 100%;
-
- position: sticky;
- top: 0;
- z-index: 999;
-
- &-1{
-  display: flex;
-  align-items: center;
- }
-
- &-hamburger{
-  width: 1.5rem;
-  height: 1rem;
-  margin: 1em;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  z-index: 999;
- 
-  span{
-   width: 100%;
-   height: 1px;
-   background: white;
-  }
- }
-
- &-tube{
-  display: flex;
-  font-size: 1.3rem;
-  align-items: center;
-  margin-left: 1.5em;
- }
- 
- &-logo{
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-  display: block;
-  background-color: $black-primary;
-  margin-right: 0.2rem;
- }
-
- &-search{
-  display: flex;
-  align-items: center;
-  flex: 0.5;
-
-  .mic{
-   background: $black-secondary;
-   border-radius: 50%;
-  }
- }
-
- form{
-  flex: 1;  //100% of the header
-  display: flex;
-  padding: 0.1rem;
-  margin: 0.1rem;
-  margin-right: 1rem;
-  border-radius: 3px;
-  border: 1.2px solid;
   background-color: $black-secondary;
-
-  input{
-   width: 100%;
-   border: none;
-   font-weight: 500;
-   background: transparent;
-   padding: 0.3rem;
-   color: $text-color;
- 
-   &:focus{
-    outline: none;
-   }
-  }
- 
-  button{
-   padding: 0 1.25rem;
-   color: $text-color;
-   background: $black-category;
-   border: none;
-   &:focus{
-    border: none;
-   }
-  }
- }
-
- &-icons{
   display: flex;
-  flex: 0.15;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  padding: 1rem;
+  height: 7vh;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 50;
 
-  img{
-   border-radius: 50%;
-   width: 40px;
-   object-fit: contain;
-   margin-left: 5px;
+  &-1{
+    display: flex;
+    align-items: center;
   }
- }
+
+  &-menu{
+    padding: 0.3rem;
+    cursor: pointer;
+
+    &:hover{
+      background: $border-color;
+      border-radius: 50%;
+    }
+  }
+
+  &-tube{
+    a{
+      display: flex;
+      align-items: center;
+      color: white;
+      font-size: 1.3rem;
+      margin-left: 0.8em;
+      text-decoration: none;
+      &:hover{
+        color: white !important;
+      }
+    }
+  }
+
+  &-logo{
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    display: block;
+    margin-right: 0.2rem;
+  }
+
+  &-name{
+    letter-spacing: -2.4px;
+    font-weight: 500;
+    font-family: 'Roboto';
+  }
+
+  &-search{
+    display: flex;
+    align-items: center;
+    flex: 0.5;
+
+    .mic{
+      background: $black-category;
+      color: white;
+      padding: 0.4rem;
+      border: none;
+      border-radius: 50%;
+      &:hover{
+        background: $border-color;
+      }
+    }
+  }
+
+  form{
+    flex: 1;  //100% of the header
+    display: flex;
+    margin: 0.1rem;
+    margin-right: 1rem;
+    border-radius: 20px;
+    border: 0.1px solid $border-color;
+    background-color: $black-secondary;
+
+    input{
+      width: 100%;
+      border: none;
+      font-weight: 500;
+      background: transparent;
+      color: $text-color;
+      padding: 0.5rem 1rem;
+ 
+      &:focus{
+        outline: none;
+      }
+    }
+ 
+    button{
+      padding: 0 1.25rem;
+      color: $text-color;
+      background: $black-category;
+      border: none;
+      border-radius: 0 20px 20px 0px;
+      &:focus{
+        border: none;
+      }
+    }
+  }
+
+  &-icons{
+    display: flex;
+    flex: 0.1;
+    justify-content: space-around;
+    align-items: center;
+
+    span{
+      padding: 0.4rem;
+      &:hover{
+        background: $black-category;
+        border-radius: 50%;
+      }
+    }
+
+    img{
+      border-radius: 50%;
+      width: 40px;
+      object-fit: contain;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-medium){
+  .toggleBackground{
+    background: linear-gradient(to right, $black-primary 250px, $black-secondary 30%, $black-secondary 100%);
+    &-menu{
+      &:hover{
+        background: transparent;
+      }
+    }
+  }
 }
 
 @media (max-width: $breakpoint-small) {
- .header{
-  padding: 1rem;
-
-  form{
-   flex: 1;
+  .header{
+    &-icons > *:not(img){
+      display: none;
+    }
   }
-
-  &-icons > *:not(img){
-   display: none;
-  }
- }
-}
-
-@media (max-width: $breakpoint-medium) {
- .header{
-  &-icons{
-   flex: 0.4;
-  }
- }
 }

@@ -1,35 +1,34 @@
 @use'../../../_base.scss' as *;
 
 .login{
- height: 100vh;
- display: grid;
- background: $black;
+  height: 100vh;
+  display: grid;
+  background: $black;
+  place-items: center;
 
- place-items: center;
+  &-container{
+    background-color: $black;
+    padding: 2rem;
+    margin: 0 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
- &-container{
-  background-color: $black;
-  padding: 2rem;
-  margin: 0 1rem;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  button{
-   padding: 0.3rem;
-   border: none;
-   border-radius: 5px;
-   margin-bottom: 1rem;
-   &:focus{
-    outline: none;
-   }
+    button{
+      padding: 0.3rem;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      &:focus{
+        outline: none;
+      }
+    }
   }
- }
 
- img{
-  width: 130px;
-  height: 130px;
-  object-fit: contain;
- }
+  img{
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+  }
 }

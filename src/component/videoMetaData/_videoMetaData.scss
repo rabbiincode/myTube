@@ -1,55 +1,198 @@
 @use'../../_base.scss' as *;
 
 .videoMetaData {
- color: #fff;
- font-size: 1rem;
- padding-left: 1rem;
+  font-size: 1rem;
 
- &-top{
-  span {
-   cursor: pointer;
-  }
- }
-
- &-channel {
-  border-top: 0.2px solid $border-color;
-  border-bottom: 0.2px solid $border-color;
-  img{
-   width: 50px;
-   height: 50px;
-  }
-  .spac{
-   margin-left: 0.5rem;
+  &-top{
+    font-weight: 500;
+    p{
+      color: #fff;
+      font-size: 1.2rem;
+    }
   }
 
-  button {
-   background-color: red;
-   color: #fff;
-   border-radius: 0;
-   text-transform: uppercase;
-   letter-spacing: 0.5px;
-   &.btn-gray {
-     background-color: gray;
-   }
-   &:hover {
+  &-channel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    img{
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    &-title{
+      display: flex;
+
+      .buttons{
+        display: flex;
+        align-items: center;
+        margin-left: 2rem;
+      }
+    }
+
+    .buttons-1{
+      display: flex;
+      align-items: center;
+
+      button{
+        background: $black-category;
+        color: #fff;
+        padding: 0.4rem 1rem;
+        margin-left: 0.5rem;
+        font-size: 0.9rem;
+        border: none;
+        border-radius: 30px;
+        &:hover {
+          background: $border-color;
+        }
+        &:focus {
+          border: none;
+          outline: none;
+        }
+      }
+
+      .line{
+        margin: 0 0.5rem;
+      }
+    }
+
+    .span{
+      margin-left: 0.8rem;
+      font-weight: 500;
+      .title{
+        color: #fff;
+      }
+      .subscribe{
+        font-size: 0.9rem;
+        span{
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    .join {
+      background: transparent;
+      color: #fff;
+      padding: 0.3rem 1rem;
+      font-weight: 500;
+      border: 0.1px solid $border-color;
+      border-radius: 30px;
+      &:hover {
+        background: $border-color;
+      }
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+
+    .btn {
+      background: #fff;
+      color: #000;
+      padding: 0.3rem 1rem;
+      margin-left: 0.5rem;
+      border: none;
+      border-radius: 30px;
+      &.btn-gray {
+        background: gray;
+      }
+      &:hover {
+        background: lightgray;
+      }
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+  }
+
+  &-description {
+    background: $black-category;
     color: #fff;
-   }
-   &:focus {
-    border: none;
-    outline: none;
-   }
+    padding: 0.8rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    white-space: pre-line;
+    border-radius: 20px;
+
+    .details{
+      .views{
+        text-transform: uppercase;
+      }
+    }
+
+    .channel{
+      border-top: 0.4rem solid $border-color;
+      padding-top: 1rem;
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+
+      img{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+      }
+
+      .span{
+        margin-left: 0.8rem;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+
+    .button{
+      margin-bottom: 3rem;
+      button{
+        background: transparent;
+        color: #fff;
+        padding: 0.4rem 8rem;
+        margin-right: 0.8rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border: 0.1px solid $border-color;
+        border-radius: 30px;
+        &:hover {
+          background: $border-color;
+        }
+        &:focus {
+          border: none;
+          outline: none;
+        }
+      }
+    }
+
+    .showMoreText {
+      display: block;
+      margin-top: 1rem;
+      color: #fff;
+      font-weight: 500;
+      text-decoration: none;
+    }
   }
- }
- &-description {
-  font-size: 0.9rem;
-  white-space: pre-line;
-  border-bottom: 0.2px solid $border-color;
-   .showMoreText {
-     text-decoration: none;
-     display: block;
-     margin: 1rem 0;
-     color: #eee;
-     font-weight: 500;
-   }
- }
+}
+
+@media (max-width: $breakpoint-medium) {
+  .videoMetaData {
+    font-size: 1rem;
+  
+    &-top{
+      font-weight: 500;
+      p{
+        color: #fff;
+        font-size: 1.2rem;
+      }
+    }
+  
+    &-channel {
+      flex-direction: column;
+      align-items: flex-start;
+
+      &-title{
+        margin-bottom: 1rem;
+      }
+    }
+  }
 }
