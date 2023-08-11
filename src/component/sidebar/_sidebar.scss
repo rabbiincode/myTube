@@ -94,7 +94,7 @@
 }
 
 @media (min-width: $breakpoint-medium){
-  .active{
+  .active-show{
     width: 70px;
     margin-left: 0.25rem;
     li{
@@ -115,10 +115,24 @@
         margin-right: 0;
       }
     }
-  
+
     .none, hr{
+      opacity: 0;
       display: none;
-    } 
+    }
+  }
+
+  .active-hide{
+    display: none;
+  }
+
+  .hideSidebar{
+    display: none;
+    position: fixed;
+  }
+
+  .active-sidebar{
+    display: flex;
   }
 }
 
@@ -126,7 +140,7 @@
   .sidebar{
     background: $black-primary;
     display: none;
-    position: absolute;
+    position: fixed;
     &-header{
       .header-menu{
         &:hover{
@@ -135,7 +149,11 @@
       }
     }
   }
-  .active{
+  .active-show{
+    display: flex;
+  }
+
+  .active-sidebar{
     display: flex;
   }
 }

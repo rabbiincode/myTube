@@ -14,7 +14,7 @@ import ChannelScreen from './component/screens/channelScreen/ChannelScreen'
 import SubscriptionScreen from './component/screens/subscriptionsScreen/SubscriptionScreen'
 import './_app.scss'
 
-const Layout = ({ children, hideSidebar }) => {
+const Layout = ({ children, hideSidebar, showSidebar }) => {
   const [toggleSidebar, setToggleSidebar] = useState(false)
   const handleToggleSidebar = () => setToggleSidebar(!toggleSidebar)
 
@@ -22,13 +22,12 @@ const Layout = ({ children, hideSidebar }) => {
     <>
       <Header toggleSidebar={toggleSidebar} handleToggleSidebar={handleToggleSidebar}/>
       <div className="app-container">
-        <div className={`${hideSidebar && 'hide'} ${toggleSidebar && 'show'}`}>
-          <Sidebar
-            toggleSidebar={toggleSidebar}
-            handleToggleSidebar={handleToggleSidebar}
-          />
-        </div>
-        <Container className={`app-main ${toggleSidebar && 'app-main-1'}`}>
+        <Sidebar
+          hideSidebar={hideSidebar}
+          showSidebar={showSidebar}
+          toggleSidebar={toggleSidebar}
+        />
+        <Container className={`app-main ${(toggleSidebar || hideSidebar) && 'app-main-1'}`}>
           {children}
         </Container>
       </div>
@@ -38,6 +37,7 @@ const Layout = ({ children, hideSidebar }) => {
 
 const App = () => {
   const [hideSidebar, setHideSidebar] = useState(true)
+  const [showSidebar, setShowSidebar] = useState(true)
   const { accessToken, loading } = useSelector(state => state.auth)
   const history = useHistory()
 
@@ -66,7 +66,7 @@ const App = () => {
       </Route>
 
       <Route path='/watch/:id'>
-        <Layout hideSidebar={hideSidebar}>
+        <Layout hideSidebar={hideSidebar} showSidebar={showSidebar}>
           <WatchScreen/>
         </Layout>
       </Route>

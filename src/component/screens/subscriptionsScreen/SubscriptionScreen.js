@@ -20,7 +20,7 @@ const SubscriptionScreen = () => {
       {
         !loading ? (
           videos?.map(video => (
-            <RelatedVideos video={video} key={video.id} subScreen />
+            <RelatedVideos video={video} key={video.id} subScreen/>
           ))
         ) : (
           <SkeletonTheme baseColor='#0d1015' highlightColor='#0d1015'>

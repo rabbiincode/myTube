@@ -1,15 +1,17 @@
 @use'../../../_base.scss' as *;
 
 .watch-screen{
-  padding: 1.4rem 4rem;
+  padding: 1.4rem 0;
   width: 100%;
+}
+
+iframe{
+  border-radius: 8px;
 }
 
 .watchScreen-player{
   height: 75vh;
-  background-color: #353340;
   width: 100%;
-  margin-bottom: 0.5rem;
 }
 
 .large-screen-hide{

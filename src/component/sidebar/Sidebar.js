@@ -13,14 +13,16 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css'
 import './_sidebar.scss'
 
-const Sidebar = ({ toggleSidebar, handleToggleSidebar }) => {
+const Sidebar = ({ toggleSidebar, hideSidebar, showSidebar }) => {
+  const display = !hideSidebar ? 'show' : (!showSidebar ? 'hide' : 'sidebar')
   const dispatch = useDispatch()
   const logOutHandler = () => {
     dispatch(logOut())
   }
+  console.log(display)
 
   return (
-    <nav className={`sidebar ${toggleSidebar && 'active'}`}>
+    <nav className={`sidebar ${toggleSidebar && 'active-' + display} ${hideSidebar && 'hideSidebar'}`}>
       <SimpleBar style={{ maxHeight: '100%' }}>
         <Link to='/'>
           <li className='home'>

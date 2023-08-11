@@ -11,7 +11,7 @@ const RelatedVideos = ({video, searchScreen, subScreen}) => {
   const {id, snippet: {channelId, channelTitle, description, title, publishedAt, thumbnails: {medium}, resourceId}} = video
   const [views, setViews] = useState(null)
   const [duration, setDuration] = useState(null)
-  const [channelIcon, setChannelIcon] = useState(null)  
+  const [channelIcon, setChannelIcon] = useState(null)
   const isVideo = !(id.kind === 'youtube#channel' || subScreen)
   const seconds = moment.duration(duration).asSeconds()
   const _duration = moment.utc(seconds * 1000).format('mm:ss')
@@ -24,7 +24,6 @@ const RelatedVideos = ({video, searchScreen, subScreen}) => {
           id: id.videoId,
         }
       })
-            
       setDuration(items[0].contentDetails.duration)
       setViews(items[0].statistics.viewCount)
     }
@@ -48,17 +47,17 @@ const RelatedVideos = ({video, searchScreen, subScreen}) => {
 
   const history = useHistory()
   const _channelId = resourceId?.channelId || channelId
+  const thumbnail = !isVideo && 'videoHorizontal-thumbnail-channel'
 
   // Click To play relatedVideo in watchScreen
   const handleClick = () => {
     isVideo ? history.push(`/watch/${id.videoId}`) : history.push(`/channel/${_channelId}`)
   }
 
-  const thumbnail = !isVideo && 'videoHorizontal-thumbnail-channel'
 
   return (
     <Row className={`relatedVideos ${searchScreen && 'relatedVideos-search-screen'}`} onClick={handleClick}>
-      <Col xs={6} md={ searchScreen || subScreen ? 4 : 5 } className='relatedVideos-left'>
+      <Col xs={searchScreen || subScreen ? 6 : 5 } md={searchScreen || subScreen ? 4 : 5} className='relatedVideos-left'>
         <LazyLoadImage 
           src={medium.url}
           effect='blur'
@@ -72,7 +71,7 @@ const RelatedVideos = ({video, searchScreen, subScreen}) => {
         }
       </Col>
 
-      <Col xs={6} md={ searchScreen || subScreen ? 8 : 7 } className='relatedVideos-right p-0'>
+      <Col xs={searchScreen || subScreen ? 6 : 7 } md={searchScreen || subScreen ? 8 : 7} className='relatedVideos-right p-0'>
         <span className={`relatedVideos-title mb-0.5 ${searchScreen && 'relatedVideos-font mb-0'}`}>{title}</span>
 
         {

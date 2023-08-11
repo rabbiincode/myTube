@@ -54,6 +54,9 @@
       border-radius: 50%;
       cursor: pointer;
     }
+    p {
+      margin: 0;
+    }
     .icon {
       display: flex;
       align-items: center;
@@ -86,14 +89,14 @@
       text-overflow: ellipsis;
     }
 
-    &-right {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: initial;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-    }
+    // &-right {
+    //   overflow: hidden;
+    //   text-overflow: ellipsis;
+    //   white-space: initial;
+    //   display: -webkit-box;
+    //   -webkit-line-clamp: 2;
+    //   -webkit-box-orient: vertical;
+    // }
   }
 }
 
