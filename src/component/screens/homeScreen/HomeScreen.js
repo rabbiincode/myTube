@@ -25,18 +25,17 @@ const HomeScreen = () => {
   }
   
   return (
-    <Row className='home'>
+    <div className='home'>
       <CategoriesBars/>
-      <div>
-        <InfiniteScroll
-          dataLength={videos.length}
-          next={fetchData}
-          hasMore={true}
-          loader={
-            <div className='spinner-border text-danger d-block mx-auto'></div>
-          }
-          className='row home-videos'
-        >
+      <InfiniteScroll
+        dataLength={videos.length}
+        next={fetchData}
+        hasMore={true}
+        loader={
+          <div className='spinner-border text-danger d-block mx-auto'></div>
+        }
+      >
+        <Row className='home-videos'>
           {
             !loading ? videos.map((video) => (
               <Col lg={3} md={4}>
@@ -44,14 +43,14 @@ const HomeScreen = () => {
               </Col>
             ))
             : [...Array(20)].map(() => (
-              <Col>
+              <Col lg={3} md={4}>
                 <SkeletonVideos/>
               </Col>
             ))
           }
-        </InfiniteScroll>
-      </div> 
-    </Row>
+        </Row>
+      </InfiniteScroll>
+    </div>
   )
 }
 

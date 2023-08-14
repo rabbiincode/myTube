@@ -51,7 +51,7 @@ const WatchScreen = () => {
       </Helmet>
 
       <Col lg={9}>
-        <div className="watchScreen-player">
+        <div className="watch-screen-player">
           <iframe src={`https://www.youtube.com/embed/${id}`} 
             frameBorder="0"
             title={video?.snippet?.title}
@@ -62,7 +62,7 @@ const WatchScreen = () => {
         </div>
         
         {!loading ? (<VideoMetaData video={video} videoId={id} />) : (<h1>Loading...</h1>)}
-        <div className='large-screen-hide'>{relatedVideos}</div>
+        <Row className='large-screen-hide'>{relatedVideos}</Row>
         <Comments videoId={id} totalComments={video?.statistics?.commentCount}/>
       </Col>
 

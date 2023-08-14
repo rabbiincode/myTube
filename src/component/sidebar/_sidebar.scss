@@ -8,7 +8,7 @@
   width: 250px;
   height: 93vh;
   top: 7vh;
-  overflow: hidden;
+  overflow: hidden !important;
   padding-top: 0.5rem;
   z-index: 100;
   transition: all 0.2s ease;
@@ -58,21 +58,22 @@
       letter-spacing: 0.4px;
     }
 
-    .sub{
-      font-size: 1rem;
-      font-weight: 500;
-      margin-left: 0px;
-    }
-
-    img{
-      width: 25px;
-      height: 20px;
-    }
-
     &:hover{
       background-color: $black-category;
       margin-right: 0.9rem;
       border-radius: 8px;
+    }
+  }
+
+  .sub{
+    font-size: 1rem;
+    font-weight: 500;
+    padding-top: 0;
+    padding-left: 0;
+    margin-left: 0px;
+    cursor: text;
+    &:hover{
+      background: transparent;
     }
   }
 
@@ -88,6 +89,7 @@
   .copyright{
     color: lightgray;
     opacity: 0.5;
+    word-spacing: 0;
     font-size: 0.85rem;
     font-weight: 500;
   }
@@ -138,22 +140,77 @@
 
 @media (max-width: $breakpoint-medium){
   .sidebar{
-    background: $black-primary;
+    background: rgba($black-primary, 0.4);
+    width: 100%;
+    height: 100vh;
     display: none;
     position: fixed;
+    top: 0;
+    padding-top: 0;
+
     &-header{
-      .header-menu{
-        &:hover{
-          background: transparent;
+      background: $black-primary;
+      display: flex;
+      align-items: center;
+      width: 250px;
+      padding: 1rem;
+      padding-top: 0.9rem;
+      &-menu{
+        padding: 0.3rem;
+        cursor: pointer;
+      }    
+      &-tube{
+        a{
+          display: flex;
+          align-items: center;
+          color: white;
+          font-size: 1.3rem;
+          margin-left: 0.8em;
+          text-decoration: none;
+          &:hover{
+            color: white !important;
+          }
+        }
+        img{
+          width: 2rem;
+          height: 1.5rem;
+          margin-right: 0.2rem;
         }
       }
+      &-name{
+        letter-spacing: -2.4px;
+        font-weight: 500;
+        font-family: 'Roboto';
+      }
+    }
+
+    &-list{
+      background: rgba($black-primary, 1);
+      width: 250px;
+      padding-top: 0.5rem;
     }
   }
+
+  .more{
+    margin-bottom: 4rem;
+  }
+
   .active-show{
     display: flex;
   }
 
   .active-sidebar{
     display: flex;
+  }
+}
+
+@media (max-width: $breakpoint-small){
+  .sidebar{
+    &-header{
+      width: 200px;
+    }
+    &-list{
+      width: 200px;
+    }
   }
 }

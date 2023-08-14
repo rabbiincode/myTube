@@ -20,12 +20,13 @@ const Layout = ({ children, hideSidebar, showSidebar }) => {
 
   return(
     <>
-      <Header toggleSidebar={toggleSidebar} handleToggleSidebar={handleToggleSidebar}/>
+      <Header handleToggleSidebar={handleToggleSidebar}/>
       <div className="app-container">
         <Sidebar
           hideSidebar={hideSidebar}
           showSidebar={showSidebar}
           toggleSidebar={toggleSidebar}
+          handleToggleSidebar={handleToggleSidebar}
         />
         <Container className={`app-main ${(toggleSidebar || hideSidebar) && 'app-main-1'}`}>
           {children}

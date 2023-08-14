@@ -27,6 +27,7 @@ This is a fully functional clone of YouTube built using:
 
 ![App Screenshot](https://firebasestorage.googleapis.com/v0/b/image-store-3e6e0.appspot.com/o/myTube.png?alt=media&token=1e8de2be-cbe7-4eb5-bcd7-135fdca83603)
 
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/image-store-3e6e0.appspot.com/o/myTube1.png?alt=media&token=4c11078f-3b2b-4adc-83d6-7078328c9006)
 
 ## Live Project Link
 

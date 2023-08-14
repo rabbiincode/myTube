@@ -9,36 +9,47 @@ import {
 import { useDispatch } from 'react-redux'
 import { logOut } from '../../redux/actions/auth.action'
 import { Link } from 'react-router-dom'
-import SimpleBar from 'simplebar-react';
+import SimpleBar from 'simplebar-react'
 import 'simplebar/dist/simplebar.min.css'
+import { MdOutlineMenu } from 'react-icons/md'
 import './_sidebar.scss'
 
-const Sidebar = ({ toggleSidebar, hideSidebar, showSidebar }) => {
-  const display = !hideSidebar ? 'show' : (!showSidebar ? 'hide' : 'sidebar')
+const Sidebar = ({ toggleSidebar, hideSidebar, showSidebar, handleToggleSidebar }) => {
   const dispatch = useDispatch()
-  const logOutHandler = () => {
-    dispatch(logOut())
-  }
-  console.log(display)
+  const logOutHandler = () => dispatch(logOut())
+  const display = !hideSidebar ? 'show' : (!showSidebar ? 'hide' : 'sidebar')
 
   return (
     <nav className={`sidebar ${toggleSidebar && 'active-' + display} ${hideSidebar && 'hideSidebar'}`}>
-      <SimpleBar style={{ maxHeight: '100%' }}>
+      <div className=' sidebar-header'>
+        <div className="sidebar-header-menu" onClick = {() => handleToggleSidebar()}>
+          <MdOutlineMenu className='icon'/>
+        </div>
+
+        <div className='sidebar-header-tube'>
+          <Link to="/">
+            <img src={'/images/youtube.png'} alt='img'/>
+            <span className='sidebar-header-name'>YouTube</span>
+          </Link>
+        </div>
+      </div>
+
+      <SimpleBar style={{ maxHeight: '100%' }} className='sidebar-list'>
         <Link to='/'>
-          <li className='home'>
-            <MdHomeFilled size={23}/>
+          <li>
+            <MdHomeFilled className='icon'/>
             <span>Home</span>
           </li>
         </Link>
 
         <li>
-          <MdShortText size={23}/>
+          <MdShortText className='icon'/>
           <span>Shorts</span>
         </li>
 
         <Link to='/feed/subscriptions'>
           <li>
-            <MdOutlineSubscriptions size={23}/>
+            <MdOutlineSubscriptions className='icon'/>
             <span className='subscribe'>Subscriptions</span>
           </li>
         </Link>
@@ -46,114 +57,114 @@ const Sidebar = ({ toggleSidebar, hideSidebar, showSidebar }) => {
         <hr className='first'/>
    
         <li>
-          <MdOutlineVideoLibrary size={23}/>
+          <MdOutlineVideoLibrary className='icon'/>
           <span>Library</span>
         </li>
 
         <li className='none'>
-          <MdHistory size={23}/>
+          <MdHistory className='icon'/>
           <span>History</span>
         </li>
 
         <li className='none'>
-          <MdOutlineWatchLater size={23}/>
+          <MdOutlineWatchLater className='icon'/>
           <span>Watch later</span>
         </li>
 
         <li className='none'>
-          <MdOutlineThumbUp size={23}/>
+          <MdOutlineThumbUp className='icon'/>
           <span>Liked Videos</span>
         </li>
  
         <hr/>
 
-        <li className='none'>
-          <span className='sub'>Subscriptions</span>
+        <li className='sub none'>
+          <span>Subscriptions</span>
         </li>
 
         <li className='none'>
-          <MdOutlineAddCircleOutline size={23}/>
+          <MdOutlineAddCircleOutline className='icon'/>
           <span>Browse channels</span>
         </li>
 
         <hr/>
 
-        <li className='none'>
-          <span className='sub'>Explore</span>
+        <li className='sub none'>
+          <span>Explore</span>
         </li>
 
         <li className='none'>
-          <MdOutlineFireplace size={23}/>
+          <MdOutlineFireplace className='icon'/>
           <span>Trending</span>
         </li>
 
         <li className='none'>
-          <MdOutlineMusicNote size={23}/>
+          <MdOutlineMusicNote className='icon'/>
           <span>Music</span>
         </li>
 
         <li className='none'>
-          <MdOutlineGamepad size={23}/>
+          <MdOutlineGamepad className='icon'/>
           <span>Gaming</span>
         </li>
 
         <li className='none'>
-          <MdOutlineBook size={23}/>
+          <MdOutlineBook className='icon'/>
           <span>News</span>
         </li>
  
         <li className='none'>
-          <MdOutlineSports size={23}/>
+          <MdOutlineSports className='icon'/>
           <span>Sports</span>
         </li>
 
         <hr/>
 
         <li onClick={logOutHandler}>
-          <MdExitToApp size={23}/>
+          <MdExitToApp className='icon'/>
           <span>LogOut</span>
         </li>
 
         <hr/>
 
-        <li className='none'>
-          <span className='sub'>More From YouTube</span>
+        <li className='sub none'>
+          <span>More From YouTube</span>
         </li>
 
         <li className='none'>
-          <img src='/images/youtube.png' alt='img' />
+          <img src='/images/youtube.png' alt='img' className='icon-1'/>
           <span>YouTube Premium</span>
         </li>
 
         <li className='none'>
-          <img src='/images/youtube-music.png' alt='img' />
+          <img src='/images/youtube-music.png' alt='img' className='icon-1'/>
           <span>YouTube Music</span>
         </li>
 
         <li className='none'>
-          <img src='/images/youtube-kids.png' alt='img' />
+          <img src='/images/youtube-kids.png' alt='img' className='icon-1'/>
           <span>YouTube Kids</span>
         </li>
 
         <hr/>
 
         <li className='none'>
-          <MdOutlineSettings size={23}/>
+          <MdOutlineSettings className='icon'/>
           <span>Settings</span>
         </li>
    
         <li className='none'>
-          <MdOutlineFlag size={23}/>
+          <MdOutlineFlag className='icon'/>
           <span>Report history</span>
         </li>
 
         <li className='none'>
-          <MdOutlineHelpOutline size={23}/>
+          <MdOutlineHelpOutline className='icon'/>
           <span>Help</span>
         </li>
 
         <li className='none'>
-          <MdOutlineFeedback size={23}/>
+          <MdOutlineFeedback className='icon'/>
           <span>Send feedback</span>
         </li>
 
@@ -162,7 +173,7 @@ const Sidebar = ({ toggleSidebar, hideSidebar, showSidebar }) => {
         <div className='more none'>
           <p>About Press Copyright<br/>Contact us Creators<br/>Advertise Developer</p>
           <p>Terms Privacy Policy & Safety<br/>How YouTube works<br/>Test new features</p>
-          <p className='copyright'>&copy; Google LLC</p>
+          <p className='copyright'>&copy; {new Date().getFullYear()} Google LLC</p>
         </div>
       </SimpleBar>
     </nav>

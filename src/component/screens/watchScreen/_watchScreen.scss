@@ -1,34 +1,35 @@
 @use'../../../_base.scss' as *;
 
 .watch-screen{
-  padding: 1.4rem 0;
+  padding: 1.4rem 0 !important;
   width: 100%;
-}
+  overflow: hidden !important;
+  &-player{
+    height: 75vh;
+    width: 100%;
+  }
 
-iframe{
-  border-radius: 8px;
-}
+  iframe{
+    border-radius: 8px;
+  }
 
-.watchScreen-player{
-  height: 75vh;
-  width: 100%;
+  ::-webkit-scrollbar{
+    display: none !important;
+  }
 }
 
 .large-screen-hide{
-  display: none;
+  display: none !important;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: $breakpoint-medium){
-  .watch-screen{
-    padding: 1.4rem 1.5rem;
-  }
-
-  .watchScreen-player {
-    height: 50vh;
+  .watch-screen-player{
+    height: 40vh;
   }
 
   .large-screen-hide{
-    display: flex;
+    display: flex !important;
   }
 
   .small-screen-hide{
@@ -37,7 +38,7 @@ iframe{
 }
 
 @media (max-width: $breakpoint-small){
-  .watchScreen-player {
-    height: 35vh;
+  .watch-screen-player {
+    height: 30vh;
   }
 }

@@ -55,7 +55,7 @@ const Comments = ({videoId, totalComments}) => {
       </div>
    
       <div className="comments-list">
-        {_comments?.map((comment, i) => (<Comment comment={comment} key={i}/>))}
+        {_comments?.map((comment, i) => <Comment comment={comment} key={i}/>)}
       </div>
     </div>
   )

@@ -11,13 +11,13 @@ $black-category: #303131;
 $breakpoint-medium: 1224px;
 $breakpoint-small: 520px;
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body{
+html, body {
   background: $black-secondary;
   background-attachment: fixed;
   color: $text-color;
@@ -25,11 +25,11 @@ html, body{
   font-family: 'Roboto', sans-serif;
   font-size: clamp(10px, 16px, 20px);
 
-  @media (max-width: $breakpoint-medium){
+  @media (max-width: $breakpoint-medium) {
     font-size: clamp(8px, 14.5px, 18px);
   }
 
-  @media (max-width: $breakpoint-small){
+  @media (max-width: $breakpoint-small) {
     font-size: clamp(5px, 12px, 14px);
   }
 }
@@ -39,6 +39,23 @@ html, body{
   display: -webkit-box;
   -webkit-line-clamp: $number;
   -webkit-box-orient: vertical;
+}
+
+// Remove bootstrap's default margin and padding for Rows
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+// Style all imported icons
+.icon{
+  width: 2rem;
+  height: 2rem;
+}
+
+.icon-1{
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 /* width */

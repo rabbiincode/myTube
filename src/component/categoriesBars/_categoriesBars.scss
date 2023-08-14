@@ -9,7 +9,8 @@
   position: sticky;
   top: 7vh;
   width: 100%;
-  padding: 0.5rem 0 1.5rem 0;
+  padding: 0 !important;
+  margin: 0.5rem 0 1.5rem 0;
   z-index: 50;
   scrollbar-width: none; //for firefox
 
@@ -39,6 +40,7 @@
 
   .bar{
     display: flex;
+    padding-left: 0.7rem;
     overflow: hidden;
 
     span{
@@ -61,14 +63,6 @@
         background-color: #fff;
         border-color: $border-color;
       }
-    }
-  }
-}
-
-@media (max-width: $breakpoint-medium){
-  .categoriesBar{
-    .bar{
-      padding: 0 0.7rem;
     }
   }
 }

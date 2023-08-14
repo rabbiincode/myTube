@@ -20,8 +20,8 @@ const Comment = ({comment}) => {
         </p>
         <p className='comment-text mb-2'>{textDisplay}</p>
         <p className='comment-details'>
-          <span className='like'><MdOutlineThumbUp size={22}/> {numeral(likeCount).format('0.a')}</span>
-          <span><MdOutlineThumbDown size={22}/></span>
+          <span className='like'><MdOutlineThumbUp className='icon-1'/> {numeral(likeCount).format('0.a')}</span>
+          <span><MdOutlineThumbDown className='icon-1'/></span>
           <span className='reply'>Reply</span>
         </p>
       </div>

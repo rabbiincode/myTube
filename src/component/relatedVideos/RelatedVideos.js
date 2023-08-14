@@ -54,7 +54,6 @@ const RelatedVideos = ({video, searchScreen, subScreen}) => {
     isVideo ? history.push(`/watch/${id.videoId}`) : history.push(`/channel/${_channelId}`)
   }
 
-
   return (
     <Row className={`relatedVideos ${searchScreen && 'relatedVideos-search-screen'}`} onClick={handleClick}>
       <Col xs={searchScreen || subScreen ? 6 : 5 } md={searchScreen || subScreen ? 4 : 5} className='relatedVideos-left'>

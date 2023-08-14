@@ -39,14 +39,12 @@
         color: white !important;
       }
     }
-  }
 
-  &-logo{
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-    display: block;
-    margin-right: 0.2rem;
+    img{
+      width: 2rem;
+      height: 1.5rem;
+      margin-right: 0.2rem;
+    }
   }
 
   &-name{
@@ -59,6 +57,10 @@
     display: flex;
     align-items: center;
     flex: 0.5;
+
+    .search{
+      display: none;
+    }
 
     .mic{
       background: $black-category;
@@ -122,27 +124,36 @@
 
     img{
       border-radius: 50%;
-      width: 40px;
+      width: 2rem;
       object-fit: contain;
     }
   }
 }
 
-@media (max-width: $breakpoint-medium){
-  .toggleBackground{
-    background: linear-gradient(to right, $black-primary 250px, $black-secondary 30%, $black-secondary 100%);
-    &-menu{
-      &:hover{
-        background: transparent;
-      }
-    }
-  }
-}
-
-@media (max-width: $breakpoint-small) {
+@media (max-width: $breakpoint-small){
   .header{
-    &-icons > *:not(img){
+    &-icons > *:not(img), form{
       display: none;
+    }
+
+    &-search{
+      .search{
+        display: flex;
+        background: transparent;
+        color: white;
+        padding: 0.2rem;
+        margin-right: 0.7rem;
+        border: none;
+        border-radius: 50%;
+        &:hover{
+          background: $border-color;
+        }
+      }
+      
+      .mic{
+        padding: 0.2rem;
+        margin-right: 0.7rem !important;
+      }
     }
   }
 }

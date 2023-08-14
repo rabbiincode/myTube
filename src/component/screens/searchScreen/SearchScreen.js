@@ -6,6 +6,7 @@ import { getVideosBySearch } from '../../../redux/actions/videos.action'
 import RelatedVideos from '../../relatedVideos/RelatedVideos'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import CustomHelmet from '../../helmet/CustomHelmet'
+import '../../relatedVideos/_relatedVideos.scss'
 
 const SearchScreen = () => {
   const { Query } = useParams()
@@ -19,7 +20,7 @@ const SearchScreen = () => {
  
   return (
     //videos?.map... '?' - here is called Optional chaining
-    <Container className='mt-3'>
+    <Container className='search-screen mt-3'>
       <CustomHelmet title={Query}/>
       {
         !loading ? (

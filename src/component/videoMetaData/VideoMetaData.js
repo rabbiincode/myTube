@@ -30,11 +30,11 @@ const VideoMetaData = ({ video: {snippet, statistics}, videoId }) => {
 
       <div className="videoMetaData-channel">
         <div className='videoMetaData-channel-title'>
-          <div className='d-flex'>
-            <img src={channelSnippet?.thumbnails?.default?.url} alt="img" className='rounded-circle mr-3' />
+          <div className='heading'>
+            <img src={channelSnippet?.thumbnails?.default?.url} alt="img" className='rounded-circle'/>
             <div className="d-flex flex-column span">
               <span className='title'>{channelTitle}</span>
-              <span className='subscribe'><span>{numeral(channelStatistics?.subscriberCount).format('0.a')}</span> subscribers</span>
+              <span className='subscribers'><span>{numeral(channelStatistics?.subscriberCount).format('0.a')}</span> subscribers</span>
             </div>
           </div>
 
@@ -47,10 +47,10 @@ const VideoMetaData = ({ video: {snippet, statistics}, videoId }) => {
         </div>
 
         <div className='buttons-1'>
-          <button><MdOutlineThumbUp size={22}/> {numeral(likeCount).format('0.a')} <span className='line'>|</span> <MdOutlineThumbDown size={22}/></button>
-          <button><MdOutlineShare  size={22}/> Share</button>
-          <button><MdOutlineDownload  size={22}/> Download</button>
-          <button><MdOutlineClose  size={22}/> Clip</button>
+          <button><MdOutlineThumbUp className='icon-1'/> {numeral(likeCount).format('0.a')} <span className='line'>|</span> <MdOutlineThumbDown className='icon-1'/></button>
+          <button><MdOutlineShare  className='icon-1'/> Share</button>
+          <button><MdOutlineDownload  className='icon-1'/> Download</button>
+          <button><MdOutlineClose  className='icon-1'/> Clip</button>
         </div>
       </div>
 
@@ -77,8 +77,8 @@ const VideoMetaData = ({ video: {snippet, statistics}, videoId }) => {
           </div>
 
           <div className='button'>
-            <button><MdOutlinePlaylistPlay size={22}/> Videos</button>
-            <button><MdOutlinePerson size={22}/> About</button>
+            <button><MdOutlinePlaylistPlay className='icon-1'/> Videos</button>
+            <button><MdOutlinePerson className='icon-1'/> About</button>
           </div>
         </ShowMoreText>
       </div>

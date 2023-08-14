@@ -1,17 +1,18 @@
 @use'../../_base.scss' as *;
 
 .video{
-  margin-bottom: 1rem;
-  padding: 0.7rem;
   font-weight: 500;
   font-size: 0.9rem;
   border-radius: 8px;
+  margin-bottom: 3rem;
   cursor: pointer;
 
   &-top{
-    margin-bottom: 0.5rem;
     position: relative;
-    
+    margin-bottom: 0.5rem;
+    width: 100%;
+    height: 100%;
+
     .lazy-load-image-background {
       width: 100%;
     }
@@ -50,7 +51,7 @@
         color: #fff;
         font-size: medium;
         margin-bottom: 0.4rem;
-        @include line-clamp(1)
+        @include line-clamp(2)
       }
 
       &-views{
@@ -63,11 +64,5 @@
         margin: 0 !important;
       }
     }
-  }
-}
-
-@media (max-width: $breakpoint-medium){
-  .video{
-    margin-bottom: 0;
   }
 }
