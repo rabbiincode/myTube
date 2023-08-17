@@ -11,14 +11,13 @@ import numeral from 'numeral'
 import './_channelScreen.scss'
 
 const ChannelScreen = () => {
-  const { channelId } = useParams()
   const dispatch = useDispatch()
-  const { videos, loading } = useSelector(state=>state.channelVideos)
-  const { snippet, statistics } = useSelector(state=>state.channelDetails.channel)
+  const { channelId } = useParams()
+  const { videos, loading } = useSelector(state => state.channelVideos)
+  const { snippet, statistics } = useSelector(state => state.channelDetails.channel)
 
   useEffect(() => {
     dispatch(getVideosByChannel(channelId))
-
     dispatch(getChannelDetails(channelId))
   }, [dispatch, channelId])
 

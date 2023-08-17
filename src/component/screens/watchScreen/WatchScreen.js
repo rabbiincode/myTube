@@ -14,17 +14,15 @@ import './_watchScreen.scss'
 const WatchScreen = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
-  const {video, loading} = useSelector(state=>state.selectedVideo)
-  const {videos} = useSelector(state=>state.relatedVideos)
+  const {video, loading} = useSelector(state => state.selectedVideo)
+  const {videos} = useSelector(state => state.relatedVideos)
 
   useEffect(() => {
     dispatch(getVideoById(id))
     dispatch(getRelatedVideos(id))
   }, [dispatch, id])
 
-  const fetchData = () => {
-    dispatch(getRelatedVideos())
-  }
+  const fetchData = () => dispatch(getRelatedVideos())
 
   let relatedVideos = 
   <InfiniteScroll

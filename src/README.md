@@ -16,11 +16,11 @@ This is a fully functional youTube Clone
 
 This is a fully functional clone of YouTube built using:
 
-- React.JS for the Frontend, 
-- Redux for State Management, 
+- React.JS for the Frontend,
+- Redux for State Management,
 - SCSS and Bootstrap for Styling,
 - Firebase for User Management,
-- YouTube Data API v3 to connect to youTube's API   EndPoints.
+- YouTube Data API v3 to connect to youTube's API EndPoints.
 
 
 ## Screenshots

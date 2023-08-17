@@ -7,7 +7,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import './_videos.scss'
 
 const Videos = ( {videos, channelScreen} ) => {
-  const { id, snippet:{channelId, channelTitle, title, publishedAt, thumbnails: {medium}, }, contentDetails } = videos
+  const { id, snippet:{channelId, channelTitle, title, publishedAt, thumbnails: {medium}}, contentDetails } = videos
   //state variables for the views
   const [views, setViews] = useState(null)
   const [duration, setDuration] = useState(null)
@@ -47,9 +47,7 @@ const Videos = ( {videos, channelScreen} ) => {
     get_channel_icon()
   }, [channelId])
 
-  const handleVideoClick = () => {
-    history.push(`/watch/${_videoId}`)
-  }
+  const handleVideoClick = () => history.push(`/watch/${_videoId}`)
 
   return(
     <div className='video' onClick={handleVideoClick}>

@@ -3,7 +3,6 @@
 .video{
   font-weight: 500;
   font-size: 0.9rem;
-  border-radius: 8px;
   margin-bottom: 3rem;
   cursor: pointer;
 
@@ -19,16 +18,17 @@
 
     img{
       width: 100%;
-      border-radius: 8px;
+      border-radius: 12px;
     }
     
     &-duration{
+      background: #080808bc;
       position: absolute;
       bottom: 0.3rem;
       right: 0.3rem;
-      padding: 0.2rem;
-      background: #080808bc;
-      border-radius: 3px;
+      padding: 0.15rem;
+      font-size: 0.8rem;
+      border-radius: 4px;
     }
   }
 

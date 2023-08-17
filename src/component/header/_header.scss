@@ -20,7 +20,6 @@
   &-menu{
     padding: 0.3rem;
     cursor: pointer;
-
     &:hover{
       background: $border-color;
       border-radius: 50%;
@@ -32,7 +31,7 @@
       display: flex;
       align-items: center;
       color: white;
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       margin-left: 0.8em;
       text-decoration: none;
       &:hover{
@@ -41,8 +40,8 @@
     }
 
     img{
-      width: 2rem;
-      height: 1.5rem;
+      width: 30px;
+      height: 20px;
       margin-right: 0.2rem;
     }
   }
@@ -55,8 +54,8 @@
 
   &-search{
     display: flex;
+    flex: 0.45;
     align-items: center;
-    flex: 0.5;
 
     .search{
       display: none;
@@ -75,7 +74,7 @@
   }
 
   form{
-    flex: 1;  //100% of the header
+    flex: 1; //100% of the width
     display: flex;
     margin: 0.1rem;
     margin-right: 1rem;
@@ -89,13 +88,13 @@
       font-weight: 500;
       background: transparent;
       color: $text-color;
-      padding: 0.5rem 1rem;
+      padding: 0.4rem 0.8rem;
  
       &:focus{
         outline: none;
       }
     }
- 
+
     button{
       padding: 0 1.25rem;
       color: $text-color;
@@ -105,14 +104,36 @@
       &:focus{
         border: none;
       }
+      .search-bar-icon{
+        width: 1.8rem;
+        height: 1.8rem;
+      }
+    }
+
+    .button-1{
+      display: none;
+      background: none;
+      padding: 0.4rem 0 0.4rem 0.8rem;
+    }
+    .button-2{
+      display: none;
+      background: none;
+      padding: 0.4rem;
+      &:hover{
+        background: $black-category;
+        border-radius: 50%;
+      }
+    }
+    .show-button{
+      display: flex;
     }
   }
 
   &-icons{
     display: flex;
-    flex: 0.1;
-    justify-content: space-around;
+    flex: 0.12;
     align-items: center;
+    justify-content: space-around;
 
     span{
       padding: 0.4rem;
@@ -121,39 +142,63 @@
         border-radius: 50%;
       }
     }
-
     img{
       border-radius: 50%;
       width: 2rem;
-      object-fit: contain;
+    }
+  }
+}
+
+@media (max-width: 734px){
+  .header{
+    .hide-logo, form{
+      display: none;
+    }
+
+    &-icons{
+      span{
+        margin-right: 0.7rem;
+      }
+    }
+    .add-width{
+      flex: 0.8;
+    }
+
+    &-search{
+      flex: 0;
+      margin-left: 0.4rem;
+      .search{
+        display: flex;
+        background: transparent;
+        color: white;
+        padding: 0.2rem;
+        margin: 0 0.8rem;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        &:hover{
+          background: $border-color;
+        }
+      }
+      .mic{
+        padding: 0.2rem;
+        margin-right: 0.7rem;
+      }
+
+      .show-form{
+        display: flex;
+      }
+      .hide-icon{
+        display: none;
+      }
     }
   }
 }
 
 @media (max-width: $breakpoint-small){
   .header{
-    &-icons > *:not(img), form{
+    &-icons > *:not(img){
       display: none;
-    }
-
-    &-search{
-      .search{
-        display: flex;
-        background: transparent;
-        color: white;
-        padding: 0.2rem;
-        margin-right: 0.7rem;
-        border: none;
-        border-radius: 50%;
-        &:hover{
-          background: $border-color;
-        }
-      }
-      
-      .mic{
-        padding: 0.2rem;
-        margin-right: 0.7rem !important;
-      }
     }
   }
 }

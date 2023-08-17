@@ -27,14 +27,12 @@ const RelatedVideos = ({video, searchScreen, subScreen}) => {
       setDuration(items[0].contentDetails.duration)
       setViews(items[0].statistics.viewCount)
     }
-    if (isVideo)
-      get_video_details()
+    if (isVideo) get_video_details()
   }, [id, isVideo])
-
 
   useEffect(() => {
     const get_channel_icon = async () => {
-      const {data: {items} } = await request('/channels', {
+      const {data: {items}} = await request('/channels', {
         params: {
           part: 'snippet',
           id: channelId,
@@ -50,9 +48,7 @@ const RelatedVideos = ({video, searchScreen, subScreen}) => {
   const thumbnail = !isVideo && 'videoHorizontal-thumbnail-channel'
 
   // Click To play relatedVideo in watchScreen
-  const handleClick = () => {
-    isVideo ? history.push(`/watch/${id.videoId}`) : history.push(`/channel/${_channelId}`)
-  }
+  const handleClick = () => isVideo ? history.push(`/watch/${id.videoId}`) : history.push(`/channel/${_channelId}`)
 
   return (
     <Row className={`relatedVideos ${searchScreen && 'relatedVideos-search-screen'}`} onClick={handleClick}>
@@ -72,7 +68,6 @@ const RelatedVideos = ({video, searchScreen, subScreen}) => {
 
       <Col xs={searchScreen || subScreen ? 6 : 7 } md={searchScreen || subScreen ? 8 : 7} className='relatedVideos-right p-0'>
         <span className={`relatedVideos-title mb-0.5 ${searchScreen && 'relatedVideos-font mb-0'}`}>{title}</span>
-
         {
           isVideo && (
             <div className="relatedVideos-details">
@@ -87,7 +82,6 @@ const RelatedVideos = ({video, searchScreen, subScreen}) => {
             </div>
           )
         }
-
         {
           subScreen && (
             <p className='mt-2'>
@@ -95,7 +89,6 @@ const RelatedVideos = ({video, searchScreen, subScreen}) => {
             </p>
           )
         }
-
         {
           (searchScreen || subScreen) && <p className='relatedVideos-desc'>{description}</p>
         }

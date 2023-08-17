@@ -11,6 +11,7 @@
     "firebase": "^9.6.1",
     "module-not-found-error": "^1.0.1",
     "moment": "^2.29.1",
+    "netlify-cli": "^16.0.3",
     "node-sass": "npm:sass@^1.45.2",
     "numeral": "^2.0.6",
     "react": "^17.0.2",
